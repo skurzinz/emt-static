@@ -48,6 +48,18 @@ current_schema = {
             'optional': True
         },
         {
+            'name': 'sender',
+            'type': 'string[]',
+            'facet': True,
+            'optional': True
+        },
+        {
+            'name': 'receiver',
+            'type': 'string[]',
+            'facet': True,
+            'optional': True
+        },
+        {
             'name': 'places',
             'type': 'string[]',
             'facet': True,
@@ -60,7 +72,7 @@ current_schema = {
             'optional': True
         },
         {
-            'name': 'works',
+            'name': 'keywords',
             'type': 'string[]',
             'facet': True,
             'optional': True
@@ -77,9 +89,11 @@ for x in tqdm(files, total=len(files)):
         'project': 'emt',
     }
     record = {}
+    
     doc = TeiReader(x)
     body = doc.any_xpath('.//tei:body')[0]
     record['id'] = os.path.split(x)[-1].replace('.xml', '')
+    record['keywords'] = doc.any_xpath('.//tei:abstract/tei:ab[@type="abstract-terms"]/tei:term/text()')
     cfts_record['id'] = record['id']
     cfts_record['resolver'] = f"https://emt.acdh-dev.oeaw.ac.at/{record['id']}.html"
     record['rec_id'] = os.path.split(x)[-1]
@@ -96,14 +110,32 @@ for x in tqdm(files, total=len(files)):
         cfts_record['year'] = int(date_str[:4])
     except ValueError:
         pass
-    # record['persons'] = [
-    #     " ".join(" ".join(x.xpath('.//text()')).split()) for x in doc.any_xpath('.//tei:back//tei:person/tei:persName[1]')
-    # ]
-    # cfts_record['persons'] = record['persons']
-    # record['places'] = [
-    #      " ".join(" ".join(x.xpath('.//text()')).split()) for x in doc.any_xpath('.//tei:back//tei:place[@xml:id]/tei:placeName[1]')
-    # ]
-    # cfts_record['places'] = record['places']
+    record['persons'] = [
+        " ".join(" ".join(x.xpath('.//text()')).split()) for x in doc.any_xpath('.//tei:correspAction//tei:persName[1]')
+    ]
+    record['sender'] = []
+    try:
+        place = doc.any_xpath('.//tei:correspAction[@type="sent"]/tei:persName/text()')[0]
+    except:
+        place = None
+    record['sender'].append(place)
+    record['receiver'] = []
+    try:
+        place = doc.any_xpath('.//tei:correspAction[@type="received"]/tei:persName/text()')[0]
+    except:
+        place = None
+    record['receiver'].append(place)
+
+
+
+    cfts_record['persons'] = record['persons']
+    record['places'] = []
+    try:
+        place = doc.any_xpath('.//tei:correspAction[@type="sent"]/tei:placeName/text()')[0]
+    except:
+        place = None
+    record['places'].append(place)
+    cfts_record['places'] = record['places']
     # record['orgs'] = [
     #      " ".join(" ".join(x.xpath('.//text()')).split()) for x in doc.any_xpath('.//tei:back//tei:org[@xml:id]/tei:orgName[1]')
     # ]
