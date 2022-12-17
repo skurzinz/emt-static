@@ -10,13 +10,13 @@ for x in tqdm(files, total=len(files)):
     item = {}
     head, tail = os.path.split(x)
     doc = TeiReader(x)
-    item['name'] = doc.any_xpath('//tei:title[@level="a"]/text()')[0]
+    item['name'] = doc.any_xpath('//tei:title[@type="main"]/text()')[0]
     try:
-        item['startDate'] = doc.any_xpath('//tei:title[@type="iso-date"]/text()')[0]
+        item['startDate'] = doc.any_xpath('//tei:origDate/@when-iso')[0]
     except:
         continue
     try:
-        item['tageszaehler'] = doc.any_xpath('//tei:title[@type="iso-date"]/@n')[0]
+        item['tageszaehler'] = 1
         item['id'] = tail.replace('.xml', '.html')
         data.append(item)
     except:

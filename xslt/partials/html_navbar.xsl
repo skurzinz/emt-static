@@ -27,32 +27,12 @@
                                     </li>
                                 </ul>                                
                             </li>
-                            <li class="nav-item dropdown">
-                                <a title="Indexes" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Register <span class="caret"></span></a>
-                                <ul class=" dropdown-menu" role="menu">
-                                    <li class="nav-item dropdown-submenu">
-                                        <a title="Personen" href="listperson.html" class="nav-link">Personen</a>
-                                    </li>
-                                    <li class="nav-item dropdown-submenu">
-                                        <a title="Orte" href="listplace.html" class="nav-link">Orte</a>
-                                    </li>
-                                    <li class="nav-item dropdown-submenu">
-                                        <a title="Orte" href="listorg.html" class="nav-link">Institutionen</a>
-                                    </li>
-                                    <div class="dropdown-divider"></div>
-                                    <li class="nav-item dropdown-submenu">
-                                        <a title="GND-BEACON" href="beacon.txt" class="nav-link">GND-BEACON</a>
-                                    </li>
-                                </ul>                                
-                            </li>                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="calendar.html">Kalender</a>
+                            </li>
                             <li class="nav-item"><a title="Editionseinheiten" href="toc.html" class="nav-link">Editionseinheiten</a></li>
                         </ul>                        
-                        <form class="form-inline my-2 my-lg-0 navbar-search-form" method="get" action="search.html" role="search">
-                            <input class="form-control navbar-search" id="s" name="q" type="text" placeholder="Search" value="" autocomplete="off" />
-                            <button type="submit" class="navbar-search-icon">
-                                <i data-feather="search"></i>
-                            </button>
-                        </form>
+                        <a title="Editionseinheiten" href="toc.html" class="nav-link"><i class="fas fa-search"></i>Suche</a>
                     </div>
                     <!-- .collapse navbar-collapse -->
                 </div>
