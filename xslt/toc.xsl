@@ -24,13 +24,17 @@
                     <div class="container-fluid">
                         <div class="card">
                             <div class="card-header">
-                                <h1>Table of Contents</h1>
+                                <h1>Briefverzeichnis</h1>
                             </div>
                             <div class="card-body">
                                 <table class="table table-striped display" id="tocTable" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th scope="col">Titel</th>
+                                            <th scope="col">Sender</th>
+                                            <th scope="col">Empfänger</th>
+                                            <th scope="col">Datum</th>
+                                            <th scope="col">Ort</th>
                                             <th scope="col">Dateinname</th>
                                         </tr>
                                     </thead>
@@ -47,6 +51,18 @@
                                                         </xsl:attribute>
                                                         <xsl:value-of select=".//tei:title[@type='main'][1]/text()"/>
                                                     </a>
+                                                </td>
+                                                <td>
+                                                    <xsl:value-of select=".//tei:correspAction[@type='sent']/tei:persName/text()"/>
+                                                </td>
+                                                <td>
+                                                    <xsl:value-of select=".//tei:correspAction[@type='received']/tei:persName/text()"/>
+                                                </td>
+                                                <td>
+                                                    <xsl:value-of select="data(.//tei:origDate/@when-iso)[1]"/>
+                                                </td>
+                                                <td>
+                                                    <xsl:value-of select=".//tei:correspAction[@type='sent']/tei:placeName/text()"/>
                                                 </td>
                                                 <td>
                                                     <xsl:value-of select="tokenize($full_path, '/')[last()]"/>

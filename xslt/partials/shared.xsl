@@ -77,4 +77,14 @@
         </strong>
     </xsl:template>
     
+    <xsl:template match="tei:choice">
+        <abbr>
+            <xsl:attribute name="title">
+                <xsl:value-of select="./tei:expan/text()"/>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </abbr>
+    </xsl:template>
+    <xsl:template match="tei:expan"></xsl:template>
+    
 </xsl:stylesheet>

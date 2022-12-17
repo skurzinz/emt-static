@@ -76,7 +76,7 @@
                                         
                                         <div class="card-header">                                            
                                             <h3>
-                                                <i class="fas fa-table"></i> Inhaltsverzeichnis
+                                                <i class="fas fa-table"></i> Briefverzeichnis
                                             </h3>                                            
                                         </div>
                                     </div>                                     

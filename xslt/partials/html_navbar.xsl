@@ -30,9 +30,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="calendar.html">Kalender</a>
                             </li>
-                            <li class="nav-item"><a title="Editionseinheiten" href="toc.html" class="nav-link">Editionseinheiten</a></li>
+                            <li class="nav-item"><a title="Briefverzeichnis" href="toc.html" class="nav-link">Briefverzeichnis</a></li>
                         </ul>                        
-                        <a title="Editionseinheiten" href="toc.html" class="nav-link"><i class="fas fa-search"></i>Suche</a>
+                        <a title="Editionseinheiten" href="search.html" class="nav-link"><i class="fas fa-search"></i>Suche</a>
                     </div>
                     <!-- .collapse navbar-collapse -->
                 </div>
