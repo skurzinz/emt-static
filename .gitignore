@@ -143,6 +143,7 @@ desktop.ini
 .DS_Store
 secret.sh
 /data/editions
+/data/indices
 
 /html/*.xml
 html/arche.rdf
