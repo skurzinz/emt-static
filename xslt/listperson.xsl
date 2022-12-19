@@ -12,7 +12,7 @@
     <xsl:import href="./partials/person.xsl"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title">
-            <xsl:value-of select=".//tei:title[@type='label'][1]/text()"/>
+            <xsl:value-of select=".//tei:title[@type='main'][1]/text()"/>
         </xsl:variable>
         <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html&gt;</xsl:text>
         <html>
@@ -33,8 +33,9 @@
                                 <table class="table table-striped display" id="tocTable" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Nachname</th>
-                                            <th scope="col">Vorname</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Erwähnungen</th>
+                                            <th scope="col">GND</th>
                                             <th scope="col">ID</th>
                                         </tr>
                                     </thead>
@@ -45,10 +46,27 @@
                                             </xsl:variable>
                                             <tr>
                                                 <td>
-                                                    <xsl:value-of select=".//tei:surname/text()"/>
+                                                    <a>
+                                                        <xsl:attribute name="href">
+                                                            <xsl:value-of select="concat($id, '.html')"/>
+                                                        </xsl:attribute>
+                                                        <xsl:value-of select="./tei:persName[1]/text()"/>
+                                                    </a> 
                                                 </td>
-                                                <td>                                        
-                                                    <xsl:value-of select=".//tei:forename/text()"/>
+                                                <td>
+                                                    <xsl:value-of select="count(.//tei:note[@type='mentions'])"/>
+                                                </td>
+                                                <td>
+                                                    <xsl:choose>
+                                                        <xsl:when test=".//tei:idno[@type='GND']/text()">
+                                                            <a>
+                                                                <xsl:attribute name="href"><xsl:value-of select=".//tei:idno[@type='GND']/text()"/></xsl:attribute><xsl:value-of select=".//tei:idno[@type='GND']/text()"/>
+                                                            </a>
+                                                        </xsl:when>
+                                                        <xsl:otherwise>
+                                                            keine ID
+                                                        </xsl:otherwise>
+                                                    </xsl:choose>
                                                 </td>
                                                 <td>
                                                     <a>

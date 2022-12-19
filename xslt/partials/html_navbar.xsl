@@ -31,6 +31,17 @@
                                 <a class="nav-link" href="calendar.html">Kalender</a>
                             </li>
                             <li class="nav-item"><a title="Briefverzeichnis" href="toc.html" class="nav-link">Briefverzeichnis</a></li>
+                            <li class="nav-item dropdown">
+                                <a title="Indexes" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Register <span class="caret"></span></a>
+                                <ul class=" dropdown-menu" role="menu">
+                                    <li class="nav-item dropdown-submenu">
+                                        <a title="Personen" href="listperson.html" class="nav-link">Personen</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a title="Orte" href="listplace.html" class="nav-link">Orte</a>
+                                    </li>
+                                </ul>                               
+                            </li>
                         </ul>                        
                         <a title="Editionseinheiten" href="search.html" class="nav-link"><i class="fas fa-search"></i>Suche</a>
                     </div>

@@ -32,7 +32,8 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Ortsname</th>
-                                            <th scope="col">Lat/Lng</th>
+                                            <th scope="col">Erwähnungen</th>
+                                            <th scope="col">Geonames</th>
                                             <th scope="col">ID</th>
                                         </tr>
                                     </thead>
@@ -43,10 +44,27 @@
                                             </xsl:variable>
                                             <tr>
                                                 <td>
-                                                    <xsl:value-of select=".//tei:placeName[1]/text()"/>
+                                                    <a>
+                                                        <xsl:attribute name="href">
+                                                            <xsl:value-of select="concat($id, '.html')"/>
+                                                        </xsl:attribute>
+                                                        <xsl:value-of select=".//tei:placeName[1]/text()"/>
+                                                    </a> 
                                                 </td>
                                                 <td>
-                                                    <xsl:value-of select=".//tei:geo[1]/text()"/>
+                                                    <xsl:value-of select="count(.//tei:note[@type='mentions'])"/>
+                                                </td>
+                                                <td>
+                                                    <xsl:choose>
+                                                        <xsl:when test=".//tei:idno[@type='GEONAMES']/text()">
+                                                            <a>
+                                                                <xsl:attribute name="href"><xsl:value-of select=".//tei:idno[@type='GEONAMES']/text()"/></xsl:attribute><xsl:value-of select=".//tei:idno[@type='GEONAMES']/text()"/>
+                                                            </a>
+                                                        </xsl:when>
+                                                        <xsl:otherwise>
+                                                            keine ID
+                                                        </xsl:otherwise>
+                                                    </xsl:choose>
                                                 </td>
                                                 <td>
                                                     <a>
