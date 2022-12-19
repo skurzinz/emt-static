@@ -50,11 +50,18 @@
                         </div>-->                        
                     </div>
                     <div class="container" style="margin-top:1em;">
-                        <div class="row">
-                            <div class="col-md-8" style="margin: 0 auto; ">
-                                <p style="font-size:18px;line-heigth:27px;"><xsl:value-of select="//tei:body/tei:div/tei:p"/></p>  
+                       
+                            <div class="alert alert-danger" role="alert">
+                                <h3 class="alert-heading">Achtung</h3>
+                                <p>Diese Seite ist für den internen Gebrauch gebraucht.
+                                <ul>
+                                    <li>Register, Paratexte und Editionseinheiten sind WIP</li>
+                                    <li>Aussehen und Funktionalität der Applikation entspricht nicht einer allfälligen Finalen Version</li>
+                                </ul></p>
+                                <hr />
+                                    <p class="mb-0">Alles kann sich jederzeit ändern</p>
                             </div>                          
-                        </div>
+                        
                     </div>
                     <div class="container" style="margin-top:1em;">
                         <div class="row">

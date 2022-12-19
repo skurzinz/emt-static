@@ -20,7 +20,7 @@
                     </div>
                     <!-- .footer-widget -->
                     <div class="footer-widget col-lg-4 col-md-3 col-sm-3">
-                        <div class="textwidget custom-html-widget">
+                        <!--<div class="textwidget custom-html-widget">
                             <p>
                                 ACDH-CH OEAW
                                 <br/>
@@ -38,12 +38,12 @@
                                 <br/>
                                 E: <a href="mailto:acdh@oeaw.ac.at">acdh@oeaw.ac.at</a>
                             </p>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="footer-widget col-lg-4 col-md-3 col-sm-4">
                         <h6 class="font-weight-bold">PROJECT PARTNERS</h6>
                         <div class="container">
-                            <div class="row">
+                            <!--<div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="flex-md-row mb-4 align-items-center">
                                         <a href="https://acdh.oeaw.ac.at"><img class="card-img-right flex-auto d-md-block" src="https://fundament.acdh.oeaw.ac.at/common-assets/images/acdh_logo.svg" alt="ACDH Logo" style="max-width: 60px; height: auto;" title="ACDH Logo" /></a>
@@ -60,12 +60,12 @@
                                         </div>
                                     </div>
                                 </div>                             
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <!-- .footer-widget -->                       
                     <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto">
-                        <div class="row">
+                        <!--<div class="row">
                             <div class="textwidget custom-html-widget">
                                 <h6 class="font-weight-bold">HELPDESK</h6>
                                 <p>ACDH-CH runs a helpdesk offering advice for questions related to various digital humanities topics.</p>
@@ -73,7 +73,7 @@
                                     <a class="helpdesk-button" href="mailto:acdh-helpdesk@oeaw.ac.at">ASK US!</a>
                                 </p>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="row">
                             <div class="footer-widget col-lg-3 col-md-4 col-sm-3 ml-auto" style="margin-left:0 !important;">
                                 <div class="textwidget custom-html-widget">
