@@ -1,12 +1,12 @@
 # bin/bash
 
-echo "fetching transkriptions from emt-transkribus-export"
+echo "fetching transkriptions from emt-working-data"
 rm -rf data/editions
-wget https://github.com/emt-project/emt-transkribus-export/archive/refs/heads/main.zip
+wget https://github.com/emt-project/emt-working-data/archive/refs/heads/main.zip
 unzip main
-mv ./emt-transkribus-export-main/data/editions ./data/editions
+mv ./emt-working-data-main/data/work-in-progress ./data/editions
 rm main.zip
-rm -rf ./emt-transkribus-export-main
+rm -rf ./emt-working-data-main
 
 echo "fetching indices from emt-entities"
 rm -rf data/indices
