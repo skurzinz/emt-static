@@ -148,3 +148,4 @@ secret.sh
 /html/*.xml
 html/arche.rdf
 html/search.html
+html/js-data/calendarData.js
