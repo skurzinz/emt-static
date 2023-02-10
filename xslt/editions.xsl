@@ -17,10 +17,13 @@
     <xsl:import href="./partials/person.xsl"/>
     <xsl:import href="./partials/place.xsl"/>
     <xsl:import href="./partials/org.xsl"/>
-
+    
     <xsl:variable name="prev">
         <xsl:value-of select="replace(tokenize(data(tei:TEI/@prev), '/')[last()], '.xml', '.html')"/>
     </xsl:variable>
+    <xsl:variable name="iiifBase" select="'https://viewer.acdh.oeaw.ac.at/viewer/api/v1/records/'"/>
+
+    
     <xsl:variable name="next">
         <xsl:value-of select="replace(tokenize(data(tei:TEI/@next), '/')[last()], '.xml', '.html')"/>
     </xsl:variable>
@@ -89,7 +92,54 @@
                                 </div>
                             </div>
                             <div class="card-body">                                
-                                <xsl:apply-templates select=".//tei:body"></xsl:apply-templates>
+                                
+                                    <xsl:for-each select=".//tei:body//tei:ab[@facs]">
+                                        <xsl:variable name="pbFacs">
+                                            <xsl:value-of select="replace(data(.//preceding-sibling::tei:pb[last()]/@xml:id), '.jpg', '')"/>
+                                        </xsl:variable>
+                                        <xsl:variable name="pbFolio" as="node()">
+                                            <xsl:value-of select="data(.//preceding-sibling::tei:pb[last()]/@n)"/>
+                                        </xsl:variable>
+                                        <xsl:variable name="facs-url"
+                                            select="normalize-space(concat($iiifBase, $pbFacs, '/files/images/', $pbFacs, '.jpg/info.json'))"/>
+                                        <h5><xsl:value-of select="$pbFolio"/></h5>
+                                        <hr />
+                                        <div class="row">
+                                        <div class="col-md-6">
+                                            <small><a><xsl:value-of select="$facs-url"/></a></small>
+                                            <div id="openseadragon-photo" style="height:800px;">
+                                                
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.0.0/openseadragon.min.js"/>
+                                                <script type="text/javascript">
+                                                    var viewer = OpenSeadragon({
+                                                    id: "openseadragon-photo",
+                                                    
+                                                    prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.0.0/images/",
+                                                    
+                                                    defaultZoomLevel: 0,
+                                                    fitHorizontally: true,
+                                                    tileSources: {
+                                                    type: 'image',
+                                                    url: '<xsl:value-of select="normalize-space($facs-url)"/>'
+                                                    },
+                                                    // Initial rotation angle
+                                                    degrees: 0,
+                                                    // Show rotation buttons
+                                                    showRotationControl: true,
+                                                    // Enable touch rotation on tactile devices
+                                                    gestureSettingsTouch: {
+                                                    pinchRotate: true
+                                                    }
+                                                    });
+                                                </script>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <xsl:apply-templates/>
+                                        </div>
+                                        </div>
+                                    </xsl:for-each>
+                                
                             </div>
                             <div class="card-footer">
                                 <p style="text-align:center;">
