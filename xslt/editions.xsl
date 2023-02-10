@@ -118,10 +118,9 @@
                                                     
                                                     defaultZoomLevel: 0,
                                                     fitHorizontally: true,
-                                                    tileSources: {
-                                                    type: 'image',
-                                                    url: '<xsl:value-of select="normalize-space($facs-url)"/>'
-                                                    },
+                                                    tileSources: [
+                                                   '<xsl:value-of select="normalize-space($facs-url)"/>'
+                                                    ],
                                                     // Initial rotation angle
                                                     degrees: 0,
                                                     // Show rotation buttons
