@@ -105,6 +105,9 @@
                                             select="data(preceding-sibling::tei:pb[position() = 1]/@n)"
                                         />
                                     </xsl:variable>
+                                    <xsl:variable name="openSeadragonId">
+                                        <xsl:value-of select="concat('os-id-', position())"/>
+                                    </xsl:variable>
                                     <xsl:variable name="facs-url"
                                         select="normalize-space(concat($iiifBase, $folderName, '/files/images/', $pbFacs, '.jpg/info.json'))"/>
                                     <div class="row">
@@ -117,14 +120,12 @@
                                     
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div id="openseadragon-photo" style="height:700px; padding:2em">
+                                            <div id="{$openSeadragonId}" style="height:700px; padding:2em">
                                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.0.0/openseadragon.min.js"/>
                                                 <script type="text/javascript">
                                                     var viewer = OpenSeadragon({
-                                                        id: "openseadragon-photo",
-                                                        
+                                                        id: '<xsl:value-of select="$openSeadragonId"/>',
                                                         prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.0.0/images/",
-                                                        
                                                         defaultZoomLevel: 0,
                                                         fitHorizontally: true,
                                                         tileSources:['<xsl:value-of select="normalize-space($facs-url)"/>'],
