@@ -94,15 +94,15 @@
                             </div>
                             <div class="card-body">
 
-                                <xsl:for-each select=".//tei:body//tei:ab[@facs]">
+                                <xsl:for-each select=".//tei:div[@type='page']">
                                     <xsl:variable name="pbFacs">
                                         <xsl:value-of
-                                            select="replace(data(preceding-sibling::tei:pb[position() = 1]/@xml:id), '.jpg', '')"
+                                            select="replace(data(./tei:pb/@xml:id), '.jpg', '')"
                                         />
                                     </xsl:variable>
                                     <xsl:variable name="pbFolio" as="node()">
                                         <xsl:value-of
-                                            select="data(preceding-sibling::tei:pb[position() = 1]/@n)"
+                                            select="data(./tei:pb/@n)"
                                         />
                                     </xsl:variable>
                                     <xsl:variable name="openSeadragonId">
@@ -140,7 +140,7 @@
                                                 });</script>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 editionstext">
                                             <xsl:apply-templates/>
                                         </div>
                                     </div>
