@@ -145,6 +145,7 @@ secret.sh
 /data/editions
 /data/indices
 
+/emt-working-data-main
 /html/*.xml
 html/arche.rdf
 html/search.html

@@ -1,10 +1,10 @@
 # bin/bash
 
 echo "fetching transkriptions from emt-working-data"
-rm -rf data/editions
+rm -rf data/editions && mkdir data/editions
 wget https://github.com/emt-project/emt-working-data/archive/refs/heads/main.zip
 unzip main
-mv ./emt-working-data-main/data/work-in-progress ./data/editions
+mv -t ./data/editions/ ./emt-working-data-main/data/work-in-progress/*/*.xml
 rm main.zip
 rm -rf ./emt-working-data-main
 

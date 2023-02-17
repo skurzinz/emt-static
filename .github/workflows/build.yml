@@ -1,8 +1,9 @@
 name: Build and publish
 
 on:
-  push
-
+  push:
+  schedule:
+    - cron: "50 9 * * *"
 jobs:
   build_pages:
     name: Publish Edition as GitHub Pages Website
