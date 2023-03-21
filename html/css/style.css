@@ -137,3 +137,7 @@ button#ssDoSearch {
     border: none;
     background-color: transparent;
 }
+
+.unclear-ciphered {
+    font-style: italic;
+}

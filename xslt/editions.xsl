@@ -285,4 +285,7 @@
             <xsl:apply-templates/>
         </div>
     </xsl:template>
+    <xsl:template match="tei:unclear[@reason='chiffriert']">
+        <span class="unclear-ciphered"><xsl:apply-templates/></span>
+    </xsl:template>
 </xsl:stylesheet>
