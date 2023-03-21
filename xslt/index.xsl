@@ -71,7 +71,7 @@
                                         
                                         <div class="card-header">                                            
                                             <h3>
-                                                <i class="fas fa-calendar"></i> Kalendar
+                                                <i class="fas fa-calendar"></i> Kalender
                                             </h3>                                            
                                         </div>
                                     </div>                                     
