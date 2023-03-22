@@ -94,6 +94,7 @@
                             <div class="card-body">
 
                                 <xsl:for-each select=".//tei:div[@type='page']">
+                                    
                                     <xsl:variable name="pbFacs">
                                         <xsl:value-of
                                             select="replace(data(./tei:pb/@xml:id), '.jpg', '')"
@@ -108,7 +109,7 @@
                                         <xsl:value-of select="concat('os-id-', position())"/>
                                     </xsl:variable>
                                     <xsl:variable name="facs-url"
-                                        select="normalize-space(concat($iiifBase, $folderName, '/files/images/', $pbFacs, '.jpg/info.json'))"/>
+                                        select="data(./tei:pb/@source)"/>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <h5>
@@ -127,7 +128,7 @@
                                                         prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.0.0/images/",
                                                         defaultZoomLevel: 0,
                                                         fitHorizontally: true,
-                                                        tileSources:['<xsl:value-of select="normalize-space($facs-url)"/>'],
+                                                        tileSources:{"type": "image", "url": '<xsl:value-of select="normalize-space($facs-url)"/>'},
                                                     // Initial rotation angle
                                                     degrees: 0,
                                                     // Show rotation buttons
