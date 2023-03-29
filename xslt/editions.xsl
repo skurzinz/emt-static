@@ -289,4 +289,7 @@
     <xsl:template match="tei:unclear[@reason='chiffriert']">
         <span class="unclear-ciphered"><xsl:apply-templates/></span>
     </xsl:template>
+    <xsl:template match="tei:seg[@type='blackening']">
+        <span class="seg-blackening"><xsl:apply-templates/></span>
+    </xsl:template>
 </xsl:stylesheet>

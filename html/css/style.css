@@ -141,3 +141,10 @@ button#ssDoSearch {
 .unclear-ciphered {
     font-style: italic;
 }
+
+.seg-blackening {
+    text-decoration: line-through;
+    background-color: #d45121;
+    color: white;
+
+}
