@@ -47,8 +47,10 @@
             <xsl:call-template name="html_head">
                 <xsl:with-param name="html_title" select="$doc_title"/>
             </xsl:call-template>
-
+            
             <body class="page">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.0.0/openseadragon.min.js"/>
+                <script src="js/osd_single.js"></script>
                 <div class="hfeed site" id="page">
                     <xsl:call-template name="nav_bar"/>
                     <div>
@@ -92,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-
+                                
                                 <xsl:for-each select=".//tei:div[@type='page']">
                                     
                                     <xsl:variable name="pbFacs">
@@ -110,6 +112,7 @@
                                     </xsl:variable>
                                     <xsl:variable name="facs-url"
                                         select="data(./tei:pb/@source)"/>
+                                    <xsl:variable name="lbs" select="count(./tei:p//tei:lb)"/>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <h5>
@@ -120,24 +123,9 @@
                                     
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div id="{$openSeadragonId}" style="height:700px; padding:2em">
-                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.0.0/openseadragon.min.js"/>
-                                                <script type="text/javascript">
-                                                    var viewer = OpenSeadragon({
-                                                        id: '<xsl:value-of select="$openSeadragonId"/>',
-                                                        prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.0.0/images/",
-                                                        defaultZoomLevel: 0,
-                                                        fitHorizontally: true,
-                                                        tileSources:{"type": "image", "url": '<xsl:value-of select="normalize-space($facs-url)"/>'},
-                                                    // Initial rotation angle
-                                                    degrees: 0,
-                                                    // Show rotation buttons
-                                                    showRotationControl: true,
-                                                    // Enable touch rotation on tactile devices
-                                                    gestureSettingsTouch: {
-                                                        pinchRotate: true
-                                                    }
-                                                });</script>
+                                            <div id="{$openSeadragonId}">
+                                                <img id="{$openSeadragonId}-img" src="{normalize-space($facs-url)}" onload="loadImage('{$openSeadragonId}', '{$lbs}')"></img>
+                                                <!-- cosy spot for OSD viewer  -->
                                             </div>
                                         </div>
                                         <div class="col-md-6 editionstext">
@@ -146,7 +134,7 @@
                                     </div>
                                     <div class="row"><div class="col-md-12"><hr /></div></div>
                                 </xsl:for-each>
-
+                                
                             </div>
                             <div class="card-footer">
                                 <p style="text-align:center;">
@@ -277,10 +265,11 @@
     </xsl:template>
 
     <xsl:template match="tei:p">
-        <p id="{local:makeId(.)}">
+        <p id="{local:makeId(.)}" data-id="{@facs}">
             <xsl:apply-templates/>
         </p>
     </xsl:template>
+
     <xsl:template match="tei:div">
         <div id="{local:makeId(.)}">
             <xsl:apply-templates/>
@@ -291,5 +280,57 @@
     </xsl:template>
     <xsl:template match="tei:seg[@type='blackening']">
         <span class="seg-blackening"><xsl:apply-templates/></span>
+    </xsl:template>
+    
+    <xsl:template match="tei:lb">
+        <xsl:variable name="idx" select="format-number(number(replace(@n, 'N', '')), '#')"/>
+        <br/>
+        <xsl:if test="not(ancestor::tei:note[@type='footnote'])">
+            <xsl:if test="ancestor::tei:p">
+                <a>
+                    <xsl:variable name="para" as="xs:int">
+                        <xsl:number level="any" from="tei:body" count="tei:p"/>
+                    </xsl:variable>
+                    <xsl:variable name="lines" as="xs:int">
+                        <xsl:number level="any" from="tei:body"/>
+                    </xsl:variable>
+                    <xsl:variable name="pID">
+                        <xsl:value-of
+                            select="data(substring-after(parent::tei:p/@facs, '#'))"
+                        />
+                    </xsl:variable>
+                    <xsl:variable name="zones" select="//tei:surface/tei:zone[@xml:id = $pID]/tei:zone[number($idx)]"/>
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="parent::tei:p/@facs"/><xsl:text>__p</xsl:text><xsl:value-of select="$para"/><xsl:text>__lb</xsl:text><xsl:value-of select="$lines"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="parent::tei:p/@facs"/><xsl:text>__p</xsl:text><xsl:value-of select="$para"/><xsl:text>__lb</xsl:text><xsl:value-of select="$lines"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="id">
+                        <xsl:value-of select="parent::tei:p/@facs"/><xsl:text>__p</xsl:text><xsl:value-of select="$para"/><xsl:text>__lb</xsl:text><xsl:value-of select="$lines"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="zone">
+                        <xsl:value-of select="$zones/@points"/>
+                    </xsl:attribute>
+                    <xsl:choose>
+                        <xsl:when test="($lines mod 5) = 0">
+                            <xsl:attribute name="class">
+                                <xsl:text>linenumbersVisible linenumbers</xsl:text>
+                            </xsl:attribute>
+                            <xsl:attribute name="data-lbnr">
+                                <xsl:value-of select="$lines"/>
+                            </xsl:attribute>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="class">
+                                <xsl:text>linenumbersTransparent linenumbers</xsl:text>
+                            </xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <xsl:value-of select="format-number($lines, '0000')"/>
+                </a>  
+            </xsl:if>
+        </xsl:if>
+        
     </xsl:template>
 </xsl:stylesheet>
