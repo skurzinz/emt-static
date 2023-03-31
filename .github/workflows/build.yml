@@ -2,6 +2,8 @@ name: Build and publish
 
 on:
   push:
+    branches:
+      - main
   schedule:
     - cron: "50 9 * * *"
 jobs:
@@ -17,6 +19,8 @@ jobs:
     steps:
     - name: Perform Checkout
       uses: actions/checkout@v3
+      with:
+        ref: main
     - name: Install Saxon, Ant, Fundament and Python Packages
       run: |
         apt-get update && apt-get install openjdk-11-jre-headless ant -y --no-install-recommend
