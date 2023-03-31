@@ -112,7 +112,6 @@
                                     </xsl:variable>
                                     <xsl:variable name="facs-url"
                                         select="data(./tei:pb/@source)"/>
-                                    <xsl:variable name="lbs" select="count(./tei:p//tei:lb)"/>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <h5>
@@ -124,7 +123,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div id="{$openSeadragonId}">
-                                                <img id="{$openSeadragonId}-img" src="{normalize-space($facs-url)}" onload="loadImage('{$openSeadragonId}', '{$lbs}')"></img>
+                                                <img id="{$openSeadragonId}-img" src="{normalize-space($facs-url)}" onload="loadImage('{$openSeadragonId}')"></img>
                                                 <!-- cosy spot for OSD viewer  -->
                                             </div>
                                         </div>
@@ -299,6 +298,7 @@
                             select="data(substring-after(parent::tei:p/@facs, '#'))"
                         />
                     </xsl:variable>
+                    <xsl:variable name="surface" select="//tei:surface/tei:zone[@xml:id = $pID]/parent::tei:surface"/>
                     <xsl:variable name="zones" select="//tei:surface/tei:zone[@xml:id = $pID]/tei:zone[number($idx)]"/>
                     <xsl:attribute name="href">
                         <xsl:value-of select="parent::tei:p/@facs"/><xsl:text>__p</xsl:text><xsl:value-of select="$para"/><xsl:text>__lb</xsl:text><xsl:value-of select="$lines"/>
@@ -308,6 +308,9 @@
                     </xsl:attribute>
                     <xsl:attribute name="id">
                         <xsl:value-of select="parent::tei:p/@facs"/><xsl:text>__p</xsl:text><xsl:value-of select="$para"/><xsl:text>__lb</xsl:text><xsl:value-of select="$lines"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="size">
+                        <xsl:value-of select="concat($surface/@lrx, ',' ,$surface/@lry)"/>
                     </xsl:attribute>
                     <xsl:attribute name="zone">
                         <xsl:value-of select="$zones/@points"/>

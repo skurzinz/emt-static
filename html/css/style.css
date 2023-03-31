@@ -150,8 +150,10 @@ button#ssDoSearch {
 }
 
 .highlight {
-    background-color: yellow;
+    border: red 2pt solid;
 }
+
+#overlay { border: red 2pt solid; }
 
 #right-arrow-overlay {
     height: 10px;

@@ -1,38 +1,10 @@
 /* function trigger when static html image was loaded */
 
-function loadImage(container_id, lbs) {
-    // get container holding the image and set height and padding
+function loadImage(container_id) {
+    /* get container holding the image and set height and padding */
     var container = document.getElementById(container_id);
     container.style.height = "700px";
     container.style.padding ="2em";
-
-    var lb = container_id.replace("os-id-", "facs_");
-    var lb = document.querySelector(`p[data-id^="#${lb}"]`);
-    var overlays = [];
-    for (let child of lb.children) {
-        if (child.tagName == "A") {
-            var zone = child.getAttribute("zone");
-            var child_id = child.getAttribute("id");
-            
-            if (zone !== null) {
-                var xys = zone.split(" ");
-                for (let i of xys) {
-                    var xy = i.split(",");
-                    var id = `${child_id}_${xy[0]}_${xy[1]}`;
-                    overlays.push(
-                        {
-                            id: id,
-                            x: xy[0],
-                            y: xy[1],
-                            className: 'highlight'
-
-                        }
-                    )
-                }
-                
-            }
-        }
-    }
 
     /* get image src (url) */
     var image = document.getElementById(`${container_id}-img`);
@@ -40,8 +12,6 @@ function loadImage(container_id, lbs) {
         type: 'image',
         url: image.getAttribute("src")
     };
-
-    console.log(overlays);
 
     // OpenSeaDragon Image Viewer
     var viewer = OpenSeadragon({
@@ -57,37 +27,88 @@ function loadImage(container_id, lbs) {
         // Enable touch rotation on tactile devices
         gestureSettingsTouch: {
             pinchRotate: true
-        },
-        overlays: [{
-            id: 'right-arrow-overlay',
-            x: 0.33,
-            y: 0.75,
-            width: 0.2,
-            height: 0.25
-        }],
-        
+        }
     });
-
-    viewer.addHandler('open', function() {
-
-        var tracker = new OpenSeadragon.MouseTracker({
-            element: viewer.container,
-            moveHandler: function(event) {
-                var webPoint = event.position;
-                var viewportPoint = viewer.viewport.pointFromPixel(webPoint);
-                var imagePoint = viewer.viewport.viewportToImageCoordinates(viewportPoint);
-                
-                // console.log("Webpoint: ", webPoint);
-                // console.log("viewpoert: ", viewportPoint);
-                // console.log("imagePoint: ", imagePoint);
-            }
-        });  
-
-        tracker.setTracking(true);  
-
-    });   
-    
-
     /* remove static html image element */
     image.remove();
+}
+
+
+/* 
+    set timeout to wait till osd viewer was loaded
+    createOverlays is a click event that creates point coords 
+    based one linenumber zones.
+    Depending on wheter the linenubmers link was already clicked
+    the class active stores the state (maybe re-write to urlparam)
+*/
+setTimeout(createOverlays, 1000);
+
+function createOverlays() {
+    /* attach click event on linenumbers */
+    var linenumbers = document.getElementsByClassName("linenumbers");
+    [].forEach.call(linenumbers, function(opt) {
+        opt.addEventListener("click", function(event) {
+            event.preventDefault();
+            /* create overlays array based on clicked linenumbers attribute zone */
+            var overlays = [];
+            var zone = opt.getAttribute("zone");
+            var opt_id = opt.getAttribute("id").replace("#", "");
+            /* since more than one viewer is open get a viewer id and open relevant viewer */
+            var viewerID = `${opt_id.split("_")[0]}_${opt_id.split("_")[1]}`;
+            var viewerID = viewerID.replace("facs_", "os-id-");
+            var openViewer = OpenSeadragon.getViewer(viewerID);
+            var wh = opt.getAttribute("size").split(",");
+            if (zone !== null) {
+                var xys = zone.split(" ");
+                for (let i of xys) {
+                    var xy = i.split(",");
+                    var id = `${opt_id}_${xy[0]}_${xy[1]}`;
+                    overlays.push(
+                        {
+                            id: id,
+                            x: parseInt(xy[0]),
+                            y: parseInt(xy[1]),
+                            className: 'highlight'
+                        }
+                    )
+                }
+            }
+            /* 
+                check if linenumbers is active or not
+                if active: remove class and remove overlays
+                else: add class and add overlays
+            */
+            if (opt.classList.contains("active")) {
+                opt.classList.remove("active");
+                for (let el of overlays) {
+                    var el_id = el.id;
+                    /* remove overlay div's */
+                    openViewer.removeOverlay(el_id);
+                }
+
+            } else {
+                opt.classList.add("active");
+                for (let el of overlays) {
+                    /* get lrx and lry from overlays array */
+                    let lowerRightX = el.x;
+                    let lowerRightY = el.y;
+                    /* create div element as overlay */
+                    let overlayElement = document.createElement("div");
+                    let idOfOverlay = document.createAttribute("id");
+                    let classOfOverlay = document.createAttribute("class");
+                    idOfOverlay.value = el.id;
+                    classOfOverlay.value = el.className;
+                    overlayElement.setAttributeNode(idOfOverlay);
+                    overlayElement.setAttributeNode(classOfOverlay);
+                    /* parse xry and xrx as integer and convert to viewport coords */
+                    let widthOfPicture = parseInt(wh[0]);
+                    let heightOfPicture = parseInt(wh[1]);
+                    let lowerRightXScaled = lowerRightX / widthOfPicture;
+                    let lowerRightYScaled = lowerRightY / heightOfPicture * heightOfPicture/widthOfPicture;
+                    /* add div el on pointLayer coords */
+                    openViewer.addOverlay(overlayElement, new OpenSeadragon.Point(lowerRightXScaled, lowerRightYScaled));
+                }
+            }
+        });
+    });
 }
