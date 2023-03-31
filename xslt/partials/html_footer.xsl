@@ -28,17 +28,17 @@
                     </div>
                     <div class="col">
                         <a href="https://www.oeaw.ac.at/ihb/" target="_blank" rel="noopener" aria-label="IHB">
-                            <img src="/img/ihb-logo-en-text.png" alt="IHB" title="Institut for Habsburg and Balkan Studies"/>
+                            <img src="img/ihb-logo-en-text.png" alt="IHB" title="Institut for Habsburg and Balkan Studies"/>
                         </a>
                     </div>
                     <div class="col">
                         <a href="https://www.fwf.ac.at/" target="_blank" rel="noopener" aria-label="FWF">
-                            <img src="/img/fwf-logo-transparent.png" alt="FWF" title="FWF Science-Fond"/>
+                            <img src="img/fwf-logo-transparent.png" alt="FWF" title="FWF Science-Fond"/>
                         </a>
                     </div>
                     <div class="col">
                         <a href="https://www.oeaw.ac.at/" target="_blank" rel="noopener" aria-label="OEAW">
-                            <img src="/img/oeaw-logo-transparent.png" alt="OEAW" title="Austrian Academy of Sciences"/>
+                            <img src="img/oeaw-logo-transparent.png" alt="OEAW" title="Austrian Academy of Sciences"/>
                         </a>
                     </div>
                     <div class="col">
