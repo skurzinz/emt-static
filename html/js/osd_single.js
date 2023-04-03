@@ -78,6 +78,10 @@ function createOverlays() {
                  */
                 var xys = zone.split(" ");
 
+                /*
+                    xy_start = first and last lrx and lry zone points
+                    xy_end = list middle and list middle + 1 lrx and lry zone points
+                */
                 var xy_start = [xys[0], xys[xys.length - 1]];
                 var xy_end = [xys[Math.floor((xys.length / 2) - 1)],
                               xys[Math.floor(xys.length / 2)]];
@@ -86,18 +90,22 @@ function createOverlays() {
                 var xys2 = xy_start[1].split(",");
                 var xye1 = xy_end[0].split(",");
                 var xye2 = xy_end[1].split(",");
+
+                /*
+                    generate id for each overlay
+                */
                 var id = `${opt_id}_${xys1[0]}_${xye2[1]}`;
                 overlays.push(
                     {
                         id: id,
-                        xs1: parseInt(xys1[0]),
-                        ys1: parseInt(xys1[1]),
-                        xs2: parseInt(xys2[0]),
-                        ys2: parseInt(xys2[1]),
-                        xe1: parseInt(xye1[0]),
-                        ye1: parseInt(xye1[1]),
-                        xe2: parseInt(xye2[0]),
-                        ye2: parseInt(xye2[1]),
+                        xs1: parseInt(xys1[0]), // x start 1
+                        ys1: parseInt(xys1[1]), // y start 1
+                        xs2: parseInt(xys2[0]), // x start 2
+                        ys2: parseInt(xys2[1]), // y start 2
+                        xe1: parseInt(xye1[0]), // x end 1
+                        ye1: parseInt(xye1[1]), // y end 1
+                        xe2: parseInt(xye2[0]), // x end 2
+                        ye2: parseInt(xye2[1]), // y end 2
                         className: 'overlay'
                     }
                 )
@@ -127,21 +135,29 @@ function createOverlays() {
                 /* create overlay, turn pixel to viewport and add overlays */
                 for (let el of overlays) {
 
-                    /* get lrx and lry from overlays list */
+                    /* 
+                        get lrx and lry from overlays list
+                        1st part contains 2 x lrx and lry at facs start position (left)
+                    */
                     let lowerRightXS1 = el.xs1;
                     let lowerRightYS1 = el.ys1;
                     let lowerRightXS2 = el.xs2;
                     let lowerRightYS2 = el.ys2;
 
+                    /* create weight between the two lrx and lry (start - left) */
                     let lrx_s1_weighted = (lowerRightXS1 + lowerRightXS2) / 2;
                     let lry_s1_weighted = (lowerRightYS1 + lowerRightYS2) / 2;
 
-                    /* get lrx and lry from overlays list */
+                    /* 
+                        get lrx and lry from overlays list
+                        2nd part contains 2 x lrx and lry at facs end position (right)
+                    */
                     let lowerRightXE1 = el.xe1;
                     let lowerRightYE1 = el.ye1;
                     let lowerRightXE2 = el.xe2;
                     let lowerRightYE2 = el.ye2;
 
+                    /* create weight between the two lrx and lry (end - right) */
                     let lrx_e1_weighted = (lowerRightXE1 + lowerRightXE2) / 2;
                     let lry_e1_weighted = (lowerRightYE1 + lowerRightYE2) / 2;
 
@@ -158,24 +174,27 @@ function createOverlays() {
                     let widthOfPicture = parseInt(wh[0]);
                     let heightOfPicture = parseInt(wh[1]);
 
-                    // 1st
+                    // 1st viewport coordinates to start the rectangle
                     let lrx_1 = lrx_s1_weighted / widthOfPicture;
                     let lry_1 = (lry_s1_weighted / heightOfPicture) * (heightOfPicture / widthOfPicture);
 
-                    // 2nd
+                    // 2nd viewport coordinates for width and height
                     let lrx_2 = lrx_e1_weighted / widthOfPicture;
                     let lry_2 = (lry_e1_weighted / heightOfPicture) * (heightOfPicture / widthOfPicture);
 
+                    /*  height is too random set to zero */
                     // if (lry_1 > lry_2) {
                     //     var heightScaled = lry_1 - lry_2;
                     // } else {
                     //     var heightScaled = lry_2 - lry_1;
                     // }
+
+                    /* width is the lrx 2nd point at the end - right */
                     let widthScaled = lrx_2;
 			        
                     /* add div el on pointLayer coords */
                     openViewer.addOverlay(overlayElement, 
-                                          new OpenSeadragon.Rect(lrx_1, 
+                                          new OpenSeadragon.Rect(lrx_1,
                                                                  lry_1,
                                                                  widthScaled,
                                                                  0));
