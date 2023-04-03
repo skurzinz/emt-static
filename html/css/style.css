@@ -149,16 +149,8 @@ button#ssDoSearch {
 
 }
 
-.highlight {
+.overlay {
     border: red 2pt solid;
-}
-
-#overlay { border: red 2pt solid; }
-
-#right-arrow-overlay {
-    height: 10px;
-    width: 10px;
-    background-color: red;
 }
 
 /* linenumbers */
