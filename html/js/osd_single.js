@@ -77,18 +77,30 @@ function createOverlays() {
                     pair every two elements
                  */
                 var xys = zone.split(" ");
-                for (let i of xys) {
-                    var xy = i.split(",");
-                    var id = `${opt_id}_${xy[0]}_${xy[1]}`;
-                    overlays.push(
-                        {
-                            id: id,
-                            x: parseInt(xy[0]),
-                            y: parseInt(xy[1]),
-                            className: 'overlay'
-                        }
-                    )
-                }
+
+                var xy_start = [xys[0], xys[xys.length - 1]];
+                var xy_end = [xys[Math.floor((xys.length / 2) - 1)],
+                              xys[Math.floor(xys.length / 2)]];
+
+                var xys1 = xy_start[0].split(",");
+                var xys2 = xy_start[1].split(",");
+                var xye1 = xy_end[0].split(",");
+                var xye2 = xy_end[1].split(",");
+                var id = `${opt_id}_${xys1[0]}_${xye2[1]}`;
+                overlays.push(
+                    {
+                        id: id,
+                        xs1: parseInt(xys1[0]),
+                        ys1: parseInt(xys1[1]),
+                        xs2: parseInt(xys2[0]),
+                        ys2: parseInt(xys2[1]),
+                        xe1: parseInt(xye1[0]),
+                        ye1: parseInt(xye1[1]),
+                        xe2: parseInt(xye2[0]),
+                        ye2: parseInt(xye2[1]),
+                        className: 'overlay'
+                    }
+                )
             }
 
             /* 
@@ -104,7 +116,6 @@ function createOverlays() {
                 /* remove overlay div's */
                 for (let el of overlays) {
                     var el_id = el.id;
-                    
                     openViewer.removeOverlay(el_id);
                 }
 
@@ -117,8 +128,22 @@ function createOverlays() {
                 for (let el of overlays) {
 
                     /* get lrx and lry from overlays list */
-                    let lowerRightX = el.x;
-                    let lowerRightY = el.y;
+                    let lowerRightXS1 = el.xs1;
+                    let lowerRightYS1 = el.ys1;
+                    let lowerRightXS2 = el.xs2;
+                    let lowerRightYS2 = el.ys2;
+
+                    let lrx_s1_weighted = (lowerRightXS1 + lowerRightXS2) / 2;
+                    let lry_s1_weighted = (lowerRightYS1 + lowerRightYS2) / 2;
+
+                    /* get lrx and lry from overlays list */
+                    let lowerRightXE1 = el.xe1;
+                    let lowerRightYE1 = el.ye1;
+                    let lowerRightXE2 = el.xe2;
+                    let lowerRightYE2 = el.ye2;
+
+                    let lrx_e1_weighted = (lowerRightXE1 + lowerRightXE2) / 2;
+                    let lry_e1_weighted = (lowerRightYE1 + lowerRightYE2) / 2;
 
                     /* create div element as overlay */
                     let overlayElement = document.createElement("div");
@@ -132,14 +157,28 @@ function createOverlays() {
                     /* parse xry and xrx as integer and convert to viewport coords */
                     let widthOfPicture = parseInt(wh[0]);
                     let heightOfPicture = parseInt(wh[1]);
-                    let lowerRightXScaled = lowerRightX / widthOfPicture;
-                    let lowerRightYScaled = lowerRightY / heightOfPicture * heightOfPicture/widthOfPicture;
 
+                    // 1st
+                    let lrx_1 = lrx_s1_weighted / widthOfPicture;
+                    let lry_1 = (lry_s1_weighted / heightOfPicture) * (heightOfPicture / widthOfPicture);
+
+                    // 2nd
+                    let lrx_2 = lrx_e1_weighted / widthOfPicture;
+                    let lry_2 = (lry_e1_weighted / heightOfPicture) * (heightOfPicture / widthOfPicture);
+
+                    // if (lry_1 > lry_2) {
+                    //     var heightScaled = lry_1 - lry_2;
+                    // } else {
+                    //     var heightScaled = lry_2 - lry_1;
+                    // }
+                    let widthScaled = lrx_2;
+			        
                     /* add div el on pointLayer coords */
                     openViewer.addOverlay(overlayElement, 
-                                          new OpenSeadragon.Point(
-                                                                  lowerRightXScaled, 
-                                                                  lowerRightYScaled));
+                                          new OpenSeadragon.Rect(lrx_1, 
+                                                                 lry_1,
+                                                                 widthScaled,
+                                                                 0));
                 }
             }
         });

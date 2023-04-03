@@ -150,7 +150,10 @@ button#ssDoSearch {
 }
 
 .overlay {
-    border: red 2pt solid;
+    border: rgba(124,124,124,.2) 1px solid;
+    background-color: rgba(245,234,37,.5);
+    margin: -15pt;
+    padding: 12pt;
 }
 
 /* linenumbers */
