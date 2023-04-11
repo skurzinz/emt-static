@@ -91,7 +91,10 @@ for x in tqdm(files, total=len(files)):
     record = {}
     
     doc = TeiReader(x)
-    body = doc.any_xpath('.//tei:body')[0]
+    try:
+        body = doc.any_xpath('.//tei:body')[0]
+    except IndexError:
+        continue
     record['id'] = os.path.split(x)[-1].replace('.xml', '')
     record['keywords'] = doc.any_xpath('.//tei:abstract/tei:ab[@type="abstract-terms"]/tei:term/text()')
     cfts_record['id'] = record['id']
