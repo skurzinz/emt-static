@@ -140,11 +140,12 @@ button#ssDoSearch {
 
 .unclear-ciphered {
     font-style: italic;
+    background-color: #378ab8;
 }
 
 .seg-blackening {
     text-decoration: line-through;
-    background-color: #d45121;
+    background-color: #0b2966;
     color: white;
 
 }
@@ -192,5 +193,16 @@ button#ssDoSearch {
 .supplied {
     background-color: #0b2966;
     color: white;
-
+}
+.abbr {
+    background-color: #0b2966;
+    color: white;
+}
+.add {
+    background-color: #0b2966;
+    color: white;
+}
+.unclear {
+    background-color: #378ab8;
+    color: white;
 }

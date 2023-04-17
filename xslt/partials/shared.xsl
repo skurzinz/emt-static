@@ -58,7 +58,10 @@
         <br/>
     </xsl:template>
     <xsl:template match="tei:unclear">
-        <abbr title="unclear"><xsl:apply-templates/></abbr>
+        <xsl:variable name="reason">
+            <xsl:value-of select="@reason"/>
+        </xsl:variable>
+        <span class="unclear"><abbr title="{$reason}"><xsl:apply-templates/></abbr></span>
     </xsl:template>
     <xsl:template match="tei:del">
         <del><xsl:apply-templates/></del>
