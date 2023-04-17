@@ -178,3 +178,13 @@ button#ssDoSearch {
     background: #653B2D;
     color: #fff
 }
+
+.entity-place {
+    background: #8f1f0b;
+    color: #fff
+}
+
+.entity-org {
+    background: #e39400;
+    color: #fff
+}

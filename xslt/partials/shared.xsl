@@ -69,6 +69,12 @@
             <xsl:choose>
                 <xsl:when test="contains(data(@ref), 'person') or ./@type='person'">person</xsl:when>
             </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="contains(data(@ref), 'place') or ./@type='place'">place</xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="contains(data(@ref), 'org') or ./@type='org'">org</xsl:when>
+            </xsl:choose>
             
         </xsl:variable>
         <strong><span>
