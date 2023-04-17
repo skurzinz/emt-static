@@ -94,6 +94,13 @@
                                 </div>
                             </div>
                             <div class="card-body">
+                                <div class="regest">
+                                    <h4><xsl:for-each select=".//tei:ab[@type='abstract-terms']/tei:term">
+                                       <span class="badge badge-primary p-1 m-1"><xsl:value-of select="./text()"/></span>
+                                    </xsl:for-each>
+                                    </h4>
+                                    <div class="regest-text"><xsl:apply-templates select=".//tei:abstract[@n='regest']"></xsl:apply-templates></div>
+                                </div>
                                 
                                 <xsl:for-each select=".//tei:div[@type='page']">
                                     

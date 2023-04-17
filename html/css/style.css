@@ -169,3 +169,7 @@ button#ssDoSearch {
 .linenumbersTransparent {
   color: transparent;
 }
+
+.regest-text {
+    font-style: italic;
+}
