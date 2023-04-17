@@ -173,3 +173,8 @@ button#ssDoSearch {
 .regest-text {
     font-style: italic;
 }
+
+.entity-person {
+    background: #653B2D;
+    color: #fff
+}

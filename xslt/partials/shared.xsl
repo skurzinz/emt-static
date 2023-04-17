@@ -64,8 +64,17 @@
         <del><xsl:apply-templates/></del>
     </xsl:template>
     
-    <xsl:template match="tei:rs[@ref or @key]">
-        <strong>
+    <xsl:template match="tei:rs">
+        <xsl:variable name="entityType">
+            <xsl:choose>
+                <xsl:when test="contains(data(@ref), 'person') or ./@type='person'">person</xsl:when>
+            </xsl:choose>
+            
+        </xsl:variable>
+        <strong><span>
+            <xsl:attribute name="class">
+                <xsl:value-of select="concat('entity entity-', $entityType)"/>
+            </xsl:attribute>
             <xsl:element name="a">
                 <xsl:attribute name="data-toggle">modal</xsl:attribute>
                 <xsl:attribute name="data-target">
@@ -74,7 +83,7 @@
                 </xsl:attribute>
                 <xsl:value-of select="."/>
             </xsl:element>
-        </strong>
+        </span></strong>
     </xsl:template>
     
     <xsl:template match="tei:choice">
