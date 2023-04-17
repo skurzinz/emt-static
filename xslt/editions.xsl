@@ -287,6 +287,9 @@
     <xsl:template match="tei:seg[@type='blackening']">
         <span class="seg-blackening"><xsl:apply-templates/></span>
     </xsl:template>
+    <xsl:template match="tei:supplied">
+        <span class="supplied"><xsl:apply-templates/></span>
+    </xsl:template>
     
     <xsl:template match="tei:lb">
         <xsl:variable name="idx" select="format-number(number(replace(@n, 'N', '')), '#')"/>
