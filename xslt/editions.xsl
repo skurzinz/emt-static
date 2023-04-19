@@ -296,7 +296,9 @@
     <xsl:template match="tei:abbr">
         <span class="abbr"><xsl:apply-templates/></span>
     </xsl:template>
-    
+    <xsl:template match="tei:date">
+        <span class="date"><xsl:apply-templates/></span>
+    </xsl:template>
     <xsl:template match="tei:lb">
         <xsl:variable name="idx" select="format-number(number(replace(@n, 'N', '')), '#')"/>
         <br/>
