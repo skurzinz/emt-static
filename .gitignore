@@ -151,3 +151,4 @@ html/arche.rdf
 html/search.html
 html/js-data/calendarData.js
 html/faulty.csv
+data/meta/*.xml
