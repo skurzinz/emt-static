@@ -98,9 +98,9 @@
     <xsl:template match="tei:choice">
         <abbr>
             <xsl:attribute name="title">
-                <xsl:value-of select="./tei:expan/text()"/>
+                <xsl:value-of select="./tei:abbr"/>
             </xsl:attribute>
-            <xsl:value-of select="./tei:abbr"/>
+            <xsl:value-of select="./tei:expan/text()"/>
         </abbr>
     </xsl:template>
     <xsl:template match="tei:expan"></xsl:template>
