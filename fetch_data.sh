@@ -17,6 +17,15 @@ mv ./emt-entities-main/indices ./data/indices
 rm main.zip
 rm -rf ./emt-entities-main
 
+echo "fetching transkriptions from emt-para-text"
+rm -rf data/meta/*.xml
+curl -LO https://github.com/emt-project/emt-para-text/archive/refs/heads/main.zip
+unzip main
+mv -t ./data/meta/ ./emt-para-text-main/data/meta/*.xml
+rm main.zip
+rm -rf ./emt-para-text-main
+
 echo "update imprint"
 ./dl_imprint.sh
+
 
