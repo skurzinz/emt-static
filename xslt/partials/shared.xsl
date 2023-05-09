@@ -90,7 +90,7 @@
                     <xsl:value-of select="data(@ref)"/>
                     <!-- <xsl:value-of select="concat('#', @key)"/> -->
                 </xsl:attribute>
-                <xsl:value-of select="."/>
+                <xsl:apply-templates/>
             </xsl:element>
         </span></strong>
     </xsl:template>
@@ -98,9 +98,9 @@
     <xsl:template match="tei:choice">
         <abbr>
             <xsl:attribute name="title">
-                <xsl:value-of select="./tei:expan/text()"/>
+                <xsl:value-of select="./tei:abbr"/>
             </xsl:attribute>
-            <xsl:apply-templates/>
+            <xsl:value-of select="./tei:expan/text()"/>
         </abbr>
     </xsl:template>
     <xsl:template match="tei:expan"></xsl:template>
