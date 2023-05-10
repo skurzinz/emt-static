@@ -96,7 +96,7 @@
     </xsl:template>
     
     <xsl:template match="tei:choice">
-        <abbr>
+        <abbr class="abbr">
             <xsl:attribute name="title">
                 <xsl:value-of select="./tei:abbr"/>
             </xsl:attribute>
