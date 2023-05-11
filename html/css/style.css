@@ -163,26 +163,31 @@ button#ssDoSearch {
     font-style: italic;
 }
 
+.entity {
+    border-radius: 0.5rem;
+    padding: 0 0.3rem;
+}
 .entity-person {
-    color: #653B2D;
+    background-color: #efe1dc;
 }
 
 .entity-place {
-    color: #8f1f0b;
+    background-color: #fbd6d0;
 }
 
 .entity-org {
-    color: #e39400;
+    background-color: #ffedcc;
 }
 
 .supplied {
-    color: #0b2966;
+    background-color: #f2f2f2;
+    color: #185de7;
 }
 .abbr {
-    color: #0b2966;
+    color: #185de7;
 }
 .add {
-    color: #0b2966;
+    color: #185de7;
 }
 .unclear {
     color: #378ab8;
@@ -199,6 +204,6 @@ button#ssDoSearch {
 
 .seg-blackening {
     text-decoration: line-through;
-    color: #0b2966;
+    color: #185de7;
 
 }
