@@ -138,18 +138,6 @@ button#ssDoSearch {
     background-color: transparent;
 }
 
-.unclear-ciphered {
-    font-style: italic;
-    background-color: #378ab8;
-}
-
-.seg-blackening {
-    text-decoration: line-through;
-    background-color: #0b2966;
-    color: white;
-
-}
-
 .overlay {
     border: rgba(124,124,124,.2) 1px solid;
     background-color: rgba(245,234,37,.5);
@@ -175,39 +163,47 @@ button#ssDoSearch {
     font-style: italic;
 }
 
+.entity {
+    border-radius: 0.5rem;
+    padding: 0 0.3rem;
+}
 .entity-person {
-    background: #653B2D;
-    color: #fff
+    background-color: #efe1dc;
 }
 
 .entity-place {
-    background: #8f1f0b;
-    color: #fff
+    background-color: #fbd6d0;
 }
 
 .entity-org {
-    background: #e39400;
-    color: #fff
+    background-color: #ffedcc;
 }
 
 .supplied {
-    background-color: #0b2966;
-    color: white;
+    background-color: #f2f2f2;
+    color: #185de7;
 }
 .abbr {
-    background-color: #0b2966;
-    color: white;
+    color: #185de7;
 }
 .add {
-    background-color: #0b2966;
-    color: white;
+    color: #185de7;
 }
 .unclear {
-    background-color: #378ab8;
-    color: white;
+    color: #378ab8;
 }
 
 .date {
-    background-color: #d45121;
-    color: white;
+    color: #d45121;
+}
+
+.unclear-ciphered {
+    font-style: italic;
+    color: #378ab8;
+}
+
+.seg-blackening {
+    text-decoration: line-through;
+    color: #185de7;
+
 }
