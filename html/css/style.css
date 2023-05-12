@@ -145,6 +145,23 @@ button#ssDoSearch {
     padding: 12pt;
 }
 
+
+/* linebreak-layout */
+
+.transcript-line {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.transcript-line-number {
+    flex: 0;
+}
+
+.transcript-line-contents {
+    flex: 1;
+}
+
+
 /* linenumbers */
 
 .linenumbers {
