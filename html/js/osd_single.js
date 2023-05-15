@@ -127,6 +127,9 @@ function createOverlays() {
                     openViewer.removeOverlay(el_id);
                 }
 
+                /* remove text overlay */
+                opt.closest('.transcript-line').classList.remove('active');
+
             } else {
 
                 /* add active state for linenumbers click event */
@@ -199,6 +202,10 @@ function createOverlays() {
                                                                  widthScaled,
                                                                  0));
                 }
+
+                /* add text overlay */
+                opt.closest('.transcript-line').classList.add('active');
+
             }
         });
     });

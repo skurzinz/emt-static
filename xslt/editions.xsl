@@ -272,7 +272,18 @@
 
     <xsl:template match="tei:p">
         <p id="{local:makeId(.)}" data-id="{@facs}">
-            <xsl:apply-templates/>
+            <xsl:for-each-group select="node()[normalize-space(.) or name(.)]" group-starting-with="self::tei:lb">
+                <span class="transcript-line">
+                    <span class="transcript-line-number">
+                        <xsl:apply-templates select="current-group()[self::tei:lb]"/>
+                    </span>
+                    <span class="transcript-line-contents">
+                        <xsl:for-each select="current-group()[not(name()='lb')]">
+                            <xsl:apply-templates select="."/>
+                        </xsl:for-each>
+                    </span>
+                </span>
+            </xsl:for-each-group>
         </p>
     </xsl:template>
 
@@ -301,7 +312,6 @@
     </xsl:template>
     <xsl:template match="tei:lb">
         <xsl:variable name="idx" select="format-number(number(replace(@n, 'N', '')), '#')"/>
-        <br/>
         <xsl:if test="not(ancestor::tei:note[@type='footnote'])">
             <xsl:if test="ancestor::tei:p">
                 <a>
