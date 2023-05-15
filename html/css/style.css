@@ -161,6 +161,10 @@ button#ssDoSearch {
     flex: 1;
 }
 
+.transcript-line.active {
+    background-color: rgba(245,234,37,.5);
+}
+
 
 /* linenumbers */
 
@@ -168,13 +172,14 @@ button#ssDoSearch {
   margin: 0 1.5em 0 0;
 }
 
-.linenumbersVisible {
+.linenumbersTransparent {
+    color: transparent;
+}
+
+.linenumbersVisible, .active .linenumbersTransparent {
   color: #444;
 }
 
-.linenumbersTransparent {
-  color: transparent;
-}
 
 .regest-text {
     font-style: italic;
