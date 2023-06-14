@@ -33,12 +33,14 @@
                                         <li data-target="#audenIndexCarousel" data-slide-to="2"></li>
                                     </ol>
                                     <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="dist/fundament/images/acdh_building.jpg" class="d-block w-100" alt="..."/>
+                                        <div class="carousel-item active d-flex flex-column align-stretch" style="background: black;">
+                                            <img src="img/banner_2.jpg" class="emt-carousel-bg-image" alt="Banner"/>
                                             <div class="carousel-caption d-none d-md-block" style="background-image: linear-gradient(rgba(38.0, 35.3, 37.6, 0.5), rgba(38.0, 35.3, 37.6, 0.5));">
                                                 <h1><xsl:value-of select="$project_short_title"/></h1>
                                                 <h2><xsl:value-of select="$project_title"/></h2>
-                                                <p>Some teaser text for the <strong><xsl:value-of select="$project_short_title"/></strong></p>
+                                                <p>
+                                                    Lorem ipsum <strong><xsl:value-of select="$project_short_title"/></strong> dolor sit amet consectetur adipisicing elit. Deserunt esse eius deleniti molestiae quae ex cupiditate dolore aperiam, dolor exercitationem, corrupti vitae. Quod fugit architecto veritatis nihil magnam iste, accusantium enim. Ipsam error, deserunt, modi ex repellendus cum corporis voluptas porro totam voluptatibus dolore praesentium tempora, molestias magnam iste perferendis quis quisquam. Quae facilis quod earum harum placeat, repudiandae exercitationem sint optio laborum molestias quam! Laudantium saepe eos maxime aliquid quaerat amet vero? Similique, laboriosam.
+                                                </p>
                                                 <button class="btn btn-round">
                                                     <a href="toc.html">Read More</a>
                                                 </button>
