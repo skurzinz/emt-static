@@ -13,7 +13,12 @@ div.dataTables_filter {
 }
 
 .navbar {
-    border-bottom: 5px solid #88dbdf !important;
+    border-bottom: 5px solid #8f1f0b !important;
+}
+
+.emt-carousel-bg-image {
+    max-height: 400px;
+    max-width: inherit;
 }
 
 .dataTables_info {
@@ -46,7 +51,7 @@ div.dataTables_filter {
 }
 
 .index-card {
-    border-top: 5px solid #88dbdf; 
+    border-top: 5px solid #653b2d; 
     transition: transform .2s;
 }
 
