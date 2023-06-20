@@ -40,6 +40,15 @@
             </body>
         </html>
     </xsl:template>
+    <xsl:template match="tei:graphic">
+        <img src="{data(@url)}"/>
+    </xsl:template>
+    
+    <xsl:template match="tei:hi[@rend]">
+        <xsl:choose>
+            <xsl:when test="contains(@rend, 'bold')"></xsl:when>
+        </xsl:choose>
+    </xsl:template>
 
     <xsl:template match="tei:p">
         <p id="{generate-id()}"><xsl:apply-templates/></p>
