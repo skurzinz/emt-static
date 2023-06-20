@@ -22,6 +22,7 @@ rm -rf data/meta/*.xml
 curl -LO https://github.com/emt-project/emt-para-text/archive/refs/heads/main.zip
 unzip main
 mv -t ./data/meta/ ./emt-para-text-main/data/meta/*.xml
+mt -t ./html/img/ ./emt-para-text-main/data/img/*.*
 rm main.zip
 rm -rf ./emt-para-text-main
 
