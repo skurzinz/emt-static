@@ -46,10 +46,38 @@
     
     <xsl:template match="tei:hi[@rend]">
         <xsl:choose>
-            <xsl:when test="contains(@rend, 'bold')"></xsl:when>
+            <xsl:when test="data(@rend) eq 'italic bold'">
+                <em><bold><xsl:apply-templates/></bold></em>
+            </xsl:when>
         </xsl:choose>
+        <xsl:choose>
+            <xsl:when test="data(@rend) eq 'bold'">
+                <strong><xsl:apply-templates></xsl:apply-templates></strong>
+            </xsl:when>
+        </xsl:choose>
+        <xsl:choose>
+            <xsl:when test="data(@rend) eq 'italic'">
+                <em><xsl:apply-templates></xsl:apply-templates></em>
+            </xsl:when>
+        </xsl:choose>
+        <xsl:choose>
+            <xsl:when test="data(@rend) eq 'underline'">
+                <u><xsl:apply-templates></xsl:apply-templates></u>
+            </xsl:when>
+        </xsl:choose>
+        
+    </xsl:template>
+    
+    <xsl:template match="tei:list">
+        <ul><xsl:apply-templates/></ul>
     </xsl:template>
 
+    <xsl:template match="tei:item">
+        <li><xsl:apply-templates/></li>
+    </xsl:template>
+   
+   
+   
     <xsl:template match="tei:p">
         <p id="{generate-id()}"><xsl:apply-templates/></p>
     </xsl:template>
