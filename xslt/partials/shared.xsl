@@ -58,10 +58,8 @@
         <br/>
     </xsl:template>
     <xsl:template match="tei:unclear">
-        <xsl:variable name="reason">
-            <xsl:value-of select="@reason"/>
-        </xsl:variable>
-        <span class="unclear"><abbr title="{$reason}"><xsl:apply-templates/></abbr></span>
+        <xsl:variable name="reason"><xsl:value-of select="@reason"/></xsl:variable>
+        <span class="unclear"><abbr title="Unklar: {$reason}"><xsl:apply-templates/></abbr></span>
     </xsl:template>
     <xsl:template match="tei:del">
         <del><xsl:apply-templates/></del>
@@ -97,9 +95,7 @@
     
     <xsl:template match="tei:choice">
         <abbr class="abbr">
-            <xsl:attribute name="title">
-                <xsl:value-of select="./tei:abbr"/>
-            </xsl:attribute>
+            <xsl:attribute name="title">Abgekürzt: <xsl:value-of select="./tei:abbr"/></xsl:attribute>
             <xsl:value-of select="./tei:expan/text()"/>
         </abbr>
     </xsl:template>
