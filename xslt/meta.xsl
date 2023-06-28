@@ -49,23 +49,19 @@
             <xsl:when test="data(@rend) eq 'italic bold'">
                 <em><bold><xsl:apply-templates/></bold></em>
             </xsl:when>
-        </xsl:choose>
-        <xsl:choose>
             <xsl:when test="data(@rend) eq 'bold'">
                 <strong><xsl:apply-templates></xsl:apply-templates></strong>
             </xsl:when>
-        </xsl:choose>
-        <xsl:choose>
             <xsl:when test="data(@rend) eq 'italic'">
                 <em><xsl:apply-templates></xsl:apply-templates></em>
             </xsl:when>
-        </xsl:choose>
-        <xsl:choose>
             <xsl:when test="data(@rend) eq 'underline'">
                 <u><xsl:apply-templates></xsl:apply-templates></u>
             </xsl:when>
+            <xsl:otherwise><xsl:apply-templates/></xsl:otherwise>
         </xsl:choose>
         
+       
     </xsl:template>
     
     <xsl:template match="tei:list">
@@ -76,6 +72,9 @@
         <li><xsl:apply-templates/></li>
     </xsl:template>
    
+   <xsl:template match="tei:head">
+       <h2><xsl:apply-templates/></h2>
+   </xsl:template>
    
    
     <xsl:template match="tei:p">
@@ -93,4 +92,26 @@
     <xsl:template match="tei:del">
         <del><xsl:apply-templates/></del>
     </xsl:template>    
+    
+    
+    <xsl:template match="tei:table">
+        <xsl:element name="table">
+            <xsl:attribute name="class">
+                <xsl:text>table table-bordered table-striped table-condensed table-hover</xsl:text>
+            </xsl:attribute>
+            <xsl:element name="tbody">
+                <xsl:apply-templates/>
+            </xsl:element>
+        </xsl:element>
+    </xsl:template>
+    <xsl:template match="tei:row">
+        <xsl:element name="tr">
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    <xsl:template match="tei:cell">
+        <xsl:element name="td">
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
 </xsl:stylesheet>
