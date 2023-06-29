@@ -41,7 +41,7 @@
         </html>
     </xsl:template>
     <xsl:template match="tei:graphic">
-        <img src="{data(@url)}"/>
+        <img src="{'img/'||tokenize(data(@url), '/')[last()]}"/>
     </xsl:template>
     
     <xsl:template match="tei:hi[@rend]">
