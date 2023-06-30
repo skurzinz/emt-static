@@ -21,8 +21,8 @@ echo "fetching transkriptions from emt-para-text"
 rm -rf data/meta/*.xml
 curl -LO https://github.com/emt-project/emt-para-text/archive/refs/heads/main.zip
 unzip main
-mv -t ./data/meta/ ./emt-para-text-main/data/meta/*.xml
-mt -t ./html/img/ ./emt-para-text-main/data/img/*.*
+mv ./emt-para-text-main/data/meta/*.xml ./data/meta/
+mv -t ./html/img/ ./emt-para-text-main/data/img/deroliebden.png 
 rm main.zip
 rm -rf ./emt-para-text-main
 
