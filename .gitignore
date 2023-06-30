@@ -154,3 +154,4 @@ html/faulty.csv
 data/meta/*.xml
 html/img/deroliebden.png
 html/no_dates.csv
+data/rss.xml
