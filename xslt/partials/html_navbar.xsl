@@ -23,19 +23,22 @@
                                 <a title="Papers" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Projekt <span class="caret"></span></a>
                                 <ul class=" dropdown-menu" role="menu">
                                     <li class="nav-item dropdown-submenu">
-                                        <a title="Auden-Musulin Correspondence" href="projekt.html" class="nav-link">Über das Projekt</a>
+                                        <a href="projekt.html" class="nav-link">Über das Projekt</a>
                                     </li>
                                     <li class="nav-item dropdown-submenu">
-                                        <a title="Auden-Musulin Correspondence" href="ueberlieferung.html" class="nav-link">Überlieferung der Quellen</a>
+                                        <a href="ueberlieferung.html" class="nav-link">Überlieferung der Quellen</a>
                                     </li>
                                     <li class="nav-item dropdown-submenu">
-                                        <a title="Auden-Musulin Correspondence" href="chiffre.html" class="nav-link">Chiffre</a>
+                                        <a href="chiffre.html" class="nav-link">Chiffre</a>
                                     </li>
                                     <li class="nav-item dropdown-submenu">
-                                        <a title="Auden-Musulin Correspondence" href="richtlinien.html" class="nav-link">Editionsrichtlinien</a>
+                                        <a href="richtlinien.html" class="nav-link">Editionsrichtlinien</a>
                                     </li>
                                     <li class="nav-item dropdown-submenu">
-                                        <a title="Auden-Musulin Correspondence" href="https://github.com/emt-project/emt-static/" class="nav-link">Quellcode der Applikation</a>
+                                        <a href="rss.html" class="nav-link">Blog</a>
+                                    </li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a href="https://github.com/emt-project/emt-static/" class="nav-link">Quellcode der Applikation</a>
                                     </li>
                                 </ul>                                
                             </li>
