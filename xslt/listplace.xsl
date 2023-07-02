@@ -27,13 +27,16 @@
                             <div class="card-header">
                                 <h1><xsl:value-of select="$doc_title"/></h1>
                             </div>
-                            <div class="card-body">                                
-                                <table class="table table-striped display" id="tocTable" style="width:100%">
+                            <div class="card-body">     
+                                <div id="map"/>
+                                <table class="table table-striped display" id="myTable" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th scope="col">Ortsname</th>
                                             <th scope="col">Erwähnungen</th>
                                             <th scope="col">Geonames</th>
+                                            <th scope="col">Lat</th>
+                                            <th scope="col">Long</th>
                                             <th scope="col">ID</th>
                                         </tr>
                                     </thead>
@@ -67,6 +70,20 @@
                                                     </xsl:choose>
                                                 </td>
                                                 <td>
+                                                    <xsl:choose>
+                                                        <xsl:when test="./tei:location/tei:geo">
+                                                            <xsl:value-of select="tokenize(./tei:location/tei:geo/text(), ' ')[1]"/>
+                                                        </xsl:when>
+                                                    </xsl:choose>
+                                                </td>
+                                                <td>
+                                                    <xsl:choose>
+                                                        <xsl:when test="./tei:location/tei:geo">
+                                                            <xsl:value-of select="tokenize(./tei:location/tei:geo/text(), ' ')[last()]"/>
+                                                        </xsl:when>
+                                                    </xsl:choose>
+                                                </td>
+                                                <td>
                                                     <a>
                                                         <xsl:attribute name="href">
                                                             <xsl:value-of select="concat($id, '.html')"/>
@@ -82,10 +99,18 @@
                         </div>                       
                     </div>
                     <xsl:call-template name="html_footer"/>
-                    <script>
-                        $(document).ready(function () {
-                        createDataTable('tocTable')
-                        });
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+                        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+                        crossorigin=""/>
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
+                    <!-- ############### leaflet script ################ -->
+                    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+                        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+                        crossorigin=""></script>
+                    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+                    <script src="js/dt_map.js">
+                        
                     </script>
                 </div>
             </body>
