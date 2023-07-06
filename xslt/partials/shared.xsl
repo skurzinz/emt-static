@@ -94,7 +94,11 @@
     </xsl:template>
     
     <xsl:template match="tei:choice">
+        <xsl:choose>
+            <xsl:when test="preceding-sibling::*[1] eq text()"><xsl:text> </xsl:text></xsl:when>
+        </xsl:choose>
         <abbr class="abbr">
+            
             <xsl:attribute name="title">Abgekürzt: <xsl:value-of select="./tei:abbr"/></xsl:attribute>
             <xsl:value-of select="./tei:expan/text()"/>
         </abbr>

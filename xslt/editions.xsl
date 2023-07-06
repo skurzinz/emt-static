@@ -300,6 +300,11 @@
     </xsl:template>
     <xsl:template match="tei:supplied">
         <span class="supplied"><xsl:apply-templates/></span>
+        <xsl:choose>
+            <xsl:when test="./following-sibling::node()[1][self::text()]">
+                <xsl:text> </xsl:text>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
     <xsl:template match="tei:add">
         <span class="add"><xsl:apply-templates/></span>
