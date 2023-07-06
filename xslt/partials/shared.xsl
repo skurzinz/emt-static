@@ -100,16 +100,13 @@
     
     <xsl:template match="tei:choice">
         <xsl:choose>
-            <xsl:when test="../preceding-sibling::node()[1][self::text() = ' ']"><xsl:text> </xsl:text></xsl:when>
+            <xsl:when test="./preceding-sibling::node()[1][self::text() = ' ']"><xsl:text> </xsl:text></xsl:when>
         </xsl:choose>
         <abbr class="abbr">
             
             <xsl:attribute name="title">Abgekürzt: <xsl:value-of select="./tei:abbr"/></xsl:attribute>
             <xsl:value-of select="./tei:expan/text()"/>
         </abbr>
-        <xsl:choose>
-            <xsl:when test="name(following-sibling::*[1]) eq 'choice'"><xsl:text> </xsl:text></xsl:when>
-        </xsl:choose>
         
     </xsl:template>
     
