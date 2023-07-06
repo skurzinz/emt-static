@@ -98,7 +98,12 @@
             <xsl:attribute name="title">Abgekürzt: <xsl:value-of select="./tei:abbr"/></xsl:attribute>
             <xsl:value-of select="./tei:expan/text()"/>
         </abbr>
+        <xsl:choose>
+            <xsl:when test="name(following-sibling::*[1]) eq 'choice'"><xsl:text> </xsl:text></xsl:when>
+        </xsl:choose>
+        
     </xsl:template>
+    
     <xsl:template match="tei:expan"></xsl:template>
     
 </xsl:stylesheet>
