@@ -60,6 +60,11 @@
     <xsl:template match="tei:unclear">
         <xsl:variable name="reason"><xsl:value-of select="@reason"/></xsl:variable>
         <span class="unclear"><abbr title="Unklar: {$reason}"><xsl:apply-templates/></abbr></span>
+        <xsl:choose>
+            <xsl:when test="./following-sibling::node()[1][self::text() = ' ']">
+                <xsl:text> </xsl:text>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
     <xsl:template match="tei:del">
         <del><xsl:apply-templates/></del>
@@ -95,7 +100,7 @@
     
     <xsl:template match="tei:choice">
         <xsl:choose>
-            <xsl:when test="preceding-sibling::*[1] eq text()"><xsl:text> </xsl:text></xsl:when>
+            <xsl:when test="../preceding-sibling::node()[1][self::text() = ' ']"><xsl:text> </xsl:text></xsl:when>
         </xsl:choose>
         <abbr class="abbr">
             
