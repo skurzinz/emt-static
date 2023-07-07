@@ -292,40 +292,7 @@
             <xsl:apply-templates/>
         </div>
     </xsl:template>
-    <xsl:template match="tei:unclear[@reason='chiffriert']">
-        <span class="unclear unclear-ciphered"><xsl:apply-templates/></span>
-    </xsl:template>
-    <xsl:template match="tei:seg[@type='blackening']">
-        <span class="seg-blackening"><xsl:apply-templates/></span>
-        <xsl:choose>
-            <xsl:when test="./following-sibling::node()[1][self::text() = ' ']">
-                <xsl:text> </xsl:text>
-            </xsl:when>
-        </xsl:choose>
-    </xsl:template>
-    <xsl:template match="tei:supplied">
-        <span class="supplied"><xsl:apply-templates/></span>
-        <xsl:choose>
-            <xsl:when test="./following-sibling::node()[1][self::text() = ' ']">
-                <xsl:text> </xsl:text>
-            </xsl:when>
-        </xsl:choose>
-    </xsl:template>
-    <xsl:template match="tei:add">
-        <span class="add"><xsl:apply-templates/></span>
-        
-    </xsl:template>
-    <xsl:template match="tei:abbr">
-        <span class="abbr"><xsl:apply-templates/></span>
-    </xsl:template>
-    <xsl:template match="tei:date">
-        <span class="date"><xsl:apply-templates/></span>
-        <xsl:choose>
-            <xsl:when test="./following-sibling::node()[1][self::text() = ' ']">
-                <xsl:text> </xsl:text>
-            </xsl:when>
-        </xsl:choose>
-    </xsl:template>
+    
     <xsl:template match="tei:lb">
         <xsl:variable name="idx" select="format-number(number(replace(@n, 'N', '')), '#')"/>
         <xsl:if test="not(ancestor::tei:note[@type='footnote'])">
