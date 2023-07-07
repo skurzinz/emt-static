@@ -3,9 +3,11 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:local="http://dse-static.foo.bar"
     version="2.0" exclude-result-prefixes="xsl tei xs">
     <xsl:output encoding="UTF-8" media-type="text/html" method="xhtml" version="1.0" indent="yes" omit-xml-declaration="yes"/>
     
+    <xsl:import href="./partials/shared.xsl"/>
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="partials/html_footer.xsl"/>
@@ -32,6 +34,41 @@
                             </div>
                             <div class="card-body">                                
                                 <xsl:apply-templates select=".//tei:body"></xsl:apply-templates>
+                            </div>
+                            <div class="card-footer">
+                                <p style="text-align:center;">
+                                    <xsl:for-each select=".//tei:note">
+                                        <div class="footnotes">
+                                            <xsl:attribute name="id">
+                                                <xsl:text>fn</xsl:text>
+                                                <xsl:number level="any" format="1"
+                                                    count="tei:note"/>
+                                            </xsl:attribute>
+                                            <xsl:element name="a">
+                                                <xsl:attribute name="name">
+                                                  <xsl:text>fn</xsl:text>
+                                                  <xsl:number level="any" format="1"
+                                                      count="tei:note"/>
+                                                </xsl:attribute>
+                                            </xsl:element>
+                                            <a>
+                                                <xsl:attribute name="href">
+                                                <xsl:text>#fna_</xsl:text>
+                                                <xsl:number level="any" format="1"
+                                                    count="tei:note"/>
+                                                </xsl:attribute>
+                                                <span
+                                                    style="font-size:7pt;vertical-align:super; margin-right: 0.4em">
+                                                <xsl:number level="any" format="1"
+                                                    count="tei:note"/>
+                                                </span>
+                                            </a>
+                                            <xsl:for-each select="./tei:p">
+                                                <xsl:apply-templates />
+                                            </xsl:for-each>
+                                        </div>
+                                    </xsl:for-each>
+                                </p>
                             </div>
                         </div>                       
                     </div>
