@@ -115,7 +115,7 @@
                                         />
                                     </xsl:variable>
                                     <xsl:variable name="openSeadragonId">
-                                        <xsl:value-of select="concat('os-id-', position())"/>
+                                        <xsl:value-of select="concat('os-id-', substring(./tei:pb/@facs, 7))"/>
                                     </xsl:variable>
                                     <xsl:variable name="facs-url"
                                         select="data(./tei:pb/@source)"/>
