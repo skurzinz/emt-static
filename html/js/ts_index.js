@@ -146,22 +146,22 @@ search.addWidgets([
     }
 }),
 
-    instantsearch.widgets.refinementList({
-        container: '#refinement-list-keywords',
-        attribute: 'keywords',
-        searchable: true,
-        searchablePlaceholder: 'Suche',
-        cssClasses: {
-          searchableInput: 'form-control form-control-sm mb-2 border-light-2',
-          searchableSubmit: 'd-none',
-          searchableReset: 'd-none',
-          showMore: 'btn btn-secondary btn-sm align-content-center',
-          list: 'list-unstyled',
-          count: 'badge ml-2 badge-success',
-          label: 'd-flex align-items-center text-capitalize',
-          checkbox: 'mr-2',
-        }
-    }),
+    // instantsearch.widgets.refinementList({
+    //     container: '#refinement-list-keywords',
+    //     attribute: 'keywords',
+    //     searchable: true,
+    //     searchablePlaceholder: 'Suche',
+    //     cssClasses: {
+    //       searchableInput: 'form-control form-control-sm mb-2 border-light-2',
+    //       searchableSubmit: 'd-none',
+    //       searchableReset: 'd-none',
+    //       showMore: 'btn btn-secondary btn-sm align-content-center',
+    //       list: 'list-unstyled',
+    //       count: 'badge ml-2 badge-success',
+    //       label: 'd-flex align-items-center text-capitalize',
+    //       checkbox: 'mr-2',
+    //     }
+    // }),
     
     instantsearch.widgets.rangeInput({
         container: "#range-input",

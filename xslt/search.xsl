@@ -42,8 +42,8 @@
                                             <div id="refinement-list-receiver"></div>
                                             <h4>Orte</h4>
                                             <div id="refinement-list-places"></div>
-                                            <h4>Schlagworte</h4>
-                                            <div id="refinement-list-keywords"></div>
+                                            <!-- <h4>Schlagworte</h4>
+                                            <div id="refinement-list-keywords"></div> -->
                                             <h4>Jahr</h4>
                                             <div id="range-input"></div>
                                         </div>
