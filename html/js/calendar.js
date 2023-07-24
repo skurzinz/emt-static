@@ -50,7 +50,7 @@ const calendar = new Calendar('#calendar', {
       html += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
       html += "<span aria-hidden='true'>&times;</span>";
       html += "</button></div>";
-      html += "<div class='modal-body'>";
+      html += "<div class='modal-body'><ul>";
       let numbersTitlesAndIds = new Array();
       for (let i = 0; i < entries.length; i++) {
         let linkTitle = entries[i].name;
@@ -71,9 +71,13 @@ const calendar = new Calendar('#calendar', {
         return 0;
       });
       for (let k = 0; k < numbersTitlesAndIds.length; k++) {
-        html += "<div class='indent'><a href='" + numbersTitlesAndIds[k].id + "'>" + numbersTitlesAndIds[k].linkTitle + "</a></div>";
+        if (numbersTitlesAndIds[k].id === false) {
+          html += "<li class='indent'>" + numbersTitlesAndIds[k].linkTitle + "</li>";
+        } else {
+          html += "<li class='indent'><a href='" + numbersTitlesAndIds[k].id + "'>" + numbersTitlesAndIds[k].linkTitle + "</a></li>";
+        }
       }
-      html += "</div>";
+      html += "</ul></div>";
       html += "<div class='modal-footer'>";
       html += "<button type='button' class='btn btn-secondary' data-dismiss='modal'>X</button>";
       html += "</div></div></div></div>";
@@ -82,7 +86,11 @@ const calendar = new Calendar('#calendar', {
       $('#dialogForLinks').modal('show');
 
     }
-    else { window.location = entries.map(entry => entry.linkId).join(); }
+    else {
+      if (entries.length > 0 && entries[0].linkId !== false) {
+        window.location = entries[0].linkId;
+      }
+    }
   },
   renderEnd: function (e) {
     const buttons = document.querySelectorAll(".yearbtn");
