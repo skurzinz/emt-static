@@ -49,6 +49,14 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-10">
+                                        <div id="calendar-legend">
+                                            <span style="font-weight: bold">Legend</span>
+                                            <ul style="list-style-type: none; padding: 0; margin: 0;">
+                                                <li><span style="color: #A63437;">red</span>: extant letter</li>
+                                                <li><span style="color: #BADA55;">green</span>: letter referenced by date in another letter</li>
+                                                <li>black: more than 3 letters</li>
+                                            </ul>
+                                        </div>
                                         <div id="calendar"/>
                                     </div>
                                 </div>
