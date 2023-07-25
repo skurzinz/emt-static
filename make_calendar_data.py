@@ -5,12 +5,12 @@ import json
 from acdh_tei_pyutils.tei import TeiReader
 from tqdm import tqdm
 
-fileList = sorted(glob.glob("./data/editions/*.xml"))
+file_list = sorted(glob.glob("./data/editions/*.xml"))
 out_file = "./html/js-data/calendarData.js"
 
-date_sorting = {}
 no_dates = []
-for file_name in tqdm(fileList, total=len(fileList)):
+data = []
+for file_name in tqdm(file_list, total=len(file_list)):
     doc = TeiReader(file_name)
     head, tail = os.path.split(file_name)
     id = tail.replace(".xml", "")
@@ -33,13 +33,8 @@ for file_name in tqdm(fileList, total=len(fileList)):
             "name": doc.any_xpath("//tei:title[@type='main']/text()")[0],
             "date": ca_date_when,
         }
-        if ca_date_when in date_sorting:
-            if "correspAction_date" in date_sorting[ca_date_when]:
-                date_sorting[ca_date_when]["correspAction_date"].append(item)
-            else:
-                date_sorting[ca_date_when]["correspAction_date"] = [item]
-        else:
-            date_sorting[ca_date_when] = {"correspAction_date": [item]}
+        data.append(item)
+
     # body/date
     body_dates = doc.any_xpath("//tei:body//tei:date[@type='letter']")
     for body_date_node in body_dates:
@@ -62,38 +57,10 @@ for file_name in tqdm(fileList, total=len(fileList)):
             "ref_by_id": id,
             "ref_by_date": ca_date_when if is_valid_date else None,
         }
-        if body_date_when in date_sorting:
-            if "referenced_date" in date_sorting[body_date_when]:
-                date_sorting[body_date_when]["referenced_date"].append(body_date_item)
-            else:
-                date_sorting[body_date_when]["referenced_date"] = [body_date_item]
-        else:
-            date_sorting[body_date_when] = {"referenced_date": [body_date_item]}
+        data.append(body_date_item)
 
-data = []
-max_tz = 0
-max_tz_loc = None
-max_tz_multi = 0
-max_tz_multi_loc = None
-for date, date_data in date_sorting.items():
-    tageszaehler = 1
-    multi_type = len(date_data) > 1
-    for date_type in date_data:
-        for item in date_data[date_type]:
-            item["tageszaehler"] = tageszaehler
-            data.append(item)
-            if tageszaehler > max_tz:
-                max_tz = tageszaehler
-                max_tz_loc = date
-            if multi_type and tageszaehler > max_tz_multi:
-                max_tz_multi = tageszaehler
-                max_tz_multi_loc = date
-            tageszaehler += 1
 
-print(f"Max tageszähler: {max_tz} @date {max_tz_loc}")
-print(f"Multi type max tageszähler: {max_tz_multi} @date {max_tz_multi_loc}")
-
-print(f"{len(data)} Datumsangaben aus {len(fileList)} extrahiert")
+print(f"{len(data)} Datumsangaben aus {len(file_list)} Dateien extrahiert")
 
 print(f"writing calendar data to {out_file}")
 with open(out_file, "w", encoding="utf8") as f:
