@@ -1,5 +1,5 @@
 function getYear(item) {
-  return item['startDate'].split('-')[0]
+  return item['date'].split('-')[0]
 }
 
 function createyearcell(val) {
@@ -8,30 +8,30 @@ function createyearcell(val) {
 </div>` : '';
 }
 
-var data = calendarData.map(r =>
+var calendarTypeData = calendarData.map(r =>
 ({
-  startDate: new Date(r.startDate),
-  endDate: new Date(r.startDate),
+  startDate: new Date(r.date),
+  endDate: new Date(r.date),
   name: r.name,
   linkId: r.id,
-  color: '#A63437'
-})).filter(r => r.startDate.getFullYear() === 1698);
+  color: r.id === false ? '#BADA55' : '#A63437'
+}));
 
 
+var startYear = 1677;
 
-
-years = Array.from(new Set(calendarData.map(getYear))).sort();
+var years = Array.from(new Set(calendarData.map(getYear))).sort();
 var yearsTable = document.getElementById('years-table');
 for (var i = 0; i <= years.length; i++) {
   yearsTable.insertAdjacentHTML('beforeend', createyearcell(years[i]));
 }
+document.getElementById("ybtn" + startYear.toString()).classList.add("focus");
 
-document.getElementById("ybtn1698").classList.add("focus");
 
 const calendar = new Calendar('#calendar', {
-  startYear: 1698,
+  startYear: startYear,
   language: "de",
-  dataSource: data,
+  dataSource: calendarTypeData.filter(r => r.startDate.getFullYear() === startYear),
   displayHeader: false,
   clickDay: function (e) {
     //window.location = e.events[0].linkId;
@@ -50,12 +50,12 @@ const calendar = new Calendar('#calendar', {
       html += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
       html += "<span aria-hidden='true'>&times;</span>";
       html += "</button></div>";
-      html += "<div class='modal-body'>";
+      html += "<div class='modal-body'><ul>";
       let numbersTitlesAndIds = new Array();
       for (let i = 0; i < entries.length; i++) {
         let linkTitle = entries[i].name;
         let linkId = entries[i].linkId;
-        let numberInSeriesOfLetters = entries[i].tageszaehler;
+        let numberInSeriesOfLetters = i + 1;
         numbersTitlesAndIds.push({ 'i': i, 'position': numberInSeriesOfLetters, 'linkTitle': linkTitle, 'id': linkId });
       }
 
@@ -71,9 +71,13 @@ const calendar = new Calendar('#calendar', {
         return 0;
       });
       for (let k = 0; k < numbersTitlesAndIds.length; k++) {
-        html += "<div class='indent'><a href='" + numbersTitlesAndIds[k].id + "'>" + numbersTitlesAndIds[k].linkTitle + "</a></div>";
+        if (numbersTitlesAndIds[k].id === false) {
+          html += "<li class='indent'>" + numbersTitlesAndIds[k].linkTitle + "</li>";
+        } else {
+          html += "<li class='indent'><a href='" + numbersTitlesAndIds[k].id + "'>" + numbersTitlesAndIds[k].linkTitle + "</a></li>";
+        }
       }
-      html += "</div>";
+      html += "</ul></div>";
       html += "<div class='modal-footer'>";
       html += "<button type='button' class='btn btn-secondary' data-dismiss='modal'>X</button>";
       html += "</div></div></div></div>";
@@ -82,7 +86,11 @@ const calendar = new Calendar('#calendar', {
       $('#dialogForLinks').modal('show');
 
     }
-    else { window.location = entries.map(entry => entry.linkId).join(); }
+    else {
+      if (entries.length > 0 && entries[0].linkId !== false) {
+        window.location = entries[0].linkId;
+      }
+    }
   },
   renderEnd: function (e) {
     const buttons = document.querySelectorAll(".yearbtn");
@@ -93,15 +101,9 @@ const calendar = new Calendar('#calendar', {
   }
 });
 
+
 function updateyear(year) {
   calendar.setYear(year);
-  const dataSource = calendarData.map(r =>
-  ({
-    startDate: new Date(r.startDate),
-    endDate: new Date(r.startDate),
-    name: r.name,
-    linkId: r.id,
-    color: '#A63437'
-  })).filter(r => r.startDate.getFullYear() === parseInt(year));
+  const dataSource = calendarTypeData.filter(r => r.startDate.getFullYear() === parseInt(year));
   calendar.setDataSource(dataSource);
 }
