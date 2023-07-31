@@ -20,45 +20,46 @@
                         <!-- Your menu goes here -->
                         <ul id="main-menu" class="navbar-nav">
                             <li class="nav-item dropdown">
-                                <a title="Papers" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Projekt <span class="caret"></span></a>
+                                <a title="Papers" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle" data-i18n="navbar__project"><span class="caret"></span></a>
                                 <ul class=" dropdown-menu" role="menu">
                                     <li class="nav-item dropdown-submenu">
-                                        <a href="projekt.html" class="nav-link">Über das Projekt</a>
+                                        <a href="projekt.html" class="nav-link" data-i18n="navbar__about"></a>
                                     </li>
                                     <li class="nav-item dropdown-submenu">
-                                        <a href="ueberlieferung.html" class="nav-link">Überlieferung der Quellen</a>
+                                        <a href="ueberlieferung.html" class="nav-link" data-i18n="navbar__tradition"></a>
                                     </li>
                                     <li class="nav-item dropdown-submenu">
-                                        <a href="chiffre.html" class="nav-link">Chiffre</a>
+                                        <a href="chiffre.html" class="nav-link" data-i18n="navbar__cipher"></a>
                                     </li>
                                     <li class="nav-item dropdown-submenu">
-                                        <a href="richtlinien.html" class="nav-link">Editionsrichtlinien</a>
+                                        <a href="richtlinien.html" class="nav-link" data-i18n="navbar__edition"></a>
                                     </li>
                                     <li class="nav-item dropdown-submenu">
-                                        <a href="rss.html" class="nav-link">Blog</a>
+                                        <a href="rss.html" class="nav-link" data-i18n="navbar__blog"></a>
                                     </li>
                                     <li class="nav-item dropdown-submenu">
-                                        <a href="https://github.com/emt-project/emt-static/" class="nav-link">Quellcode der Applikation</a>
+                                        <a href="https://github.com/emt-project/emt-static/" class="nav-link" data-i18n="navbar__sourcecode"></a>
                                     </li>
                                 </ul>                                
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="calendar.html">Kalender</a>
+                                <a class="nav-link" href="calendar.html" data-i18n="navbar__calendar"></a>
                             </li>
-                            <li class="nav-item"><a title="Briefverzeichnis" href="toc.html" class="nav-link">Briefverzeichnis</a></li>
+                            <li class="nav-item"><a title="Briefverzeichnis" href="toc.html" class="nav-link" data-i18n="navbar__letterindex"></a></li>
                             <li class="nav-item dropdown">
-                                <a title="Indexes" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Register <span class="caret"></span></a>
+                                <a title="Indexes" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle" data-i18n="navbar__register"><span class="caret"></span></a>
                                 <ul class=" dropdown-menu" role="menu">
                                     <li class="nav-item dropdown-submenu">
-                                        <a title="Personen" href="listperson.html" class="nav-link">Personen</a>
+                                        <a title="Personen" href="listperson.html" class="nav-link" data-i18n="navbar__persons"></a>
                                     </li>
                                     <li class="nav-item dropdown-submenu">
-                                        <a title="Orte" href="listplace.html" class="nav-link">Orte</a>
+                                        <a title="Orte" href="listplace.html" class="nav-link" data-i18n="navbar__places"></a>
                                     </li>
                                 </ul>                               
                             </li>
                         </ul>                        
-                        <a title="Editionseinheiten" href="search.html" class="nav-link"><i class="fas fa-search"></i>Suche</a>
+                        <a title="Suche" href="search.html" class="nav-link" data-i18n="navbar__search"></a>
+                        <select name="language" id="languageSwitcher"></select>
                     </div>
                     <!-- .collapse navbar-collapse -->
                 </div>

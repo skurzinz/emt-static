@@ -1,0 +1,15 @@
+{
+    "navbar__project": "Project",
+    "navbar__about": "About the project",
+    "navbar__tradition": "",
+    "navbar__cipher": "",
+    "navbar__edition": "",
+    "navbar__blog": "",
+    "navbar__sourcecode": "",
+    "navbar__calendar": "",
+    "navbar__letterindex": "",
+    "navbar__register": "Register",
+    "navbar__persons": "Person",
+    "navbar__places": "Places",
+    "navbar__search": "Search"
+}

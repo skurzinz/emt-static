@@ -1,0 +1,15 @@
+{
+    "navbar__project": "Projekt",
+    "navbar__about": "Über das Projekt",
+    "navbar__tradition": "Überlieferung der Quellen",
+    "navbar__cipher": "Chiffre",
+    "navbar__edition": "Editionsrichtlinien",
+    "navbar__blog": "Blog",
+    "navbar__sourcecode": "Quellcode der Applikation",
+    "navbar__calendar": "Kalender",
+    "navbar__letterindex": "Briefverzeichnis",
+    "navbar__register": "Register",
+    "navbar__persons": "Personen",
+    "navbar__places": "Orte",
+    "navbar__search": "Suche"
+}
