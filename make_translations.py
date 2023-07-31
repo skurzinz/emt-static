@@ -2,10 +2,12 @@ import csv
 import os
 import json
 
+
 TRANSLATIONS = "translations.csv"
 locales_dir = os.path.join("html", "locales")
 os.makedirs(locales_dir, exist_ok=True)
 
+print(f"converting translations from {TRANSLATIONS} into {locales_dir}")
 
 langs = []
 with open(TRANSLATIONS, newline="") as f:

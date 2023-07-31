@@ -6,3 +6,4 @@ python rm_listevent.py
 python add_mentions.py
 python make_typesense_index.py
 python make_calendar_data.py
+python make_translations.py
