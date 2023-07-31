@@ -62,8 +62,15 @@
                                     <h5 class="modal-title">Die Briefe in Kalenderansicht</h5>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Briefe eines bestimmten Tages suchen.
-                                    </p>
+                                    <p>Briefe eines bestimmten Tages suchen.</p>
+                                    <div id="calendar-legend">
+                                        <span style="font-weight: bold">Legend</span>
+                                        <ul style="list-style-type: none; padding: 0; margin: 0;">
+                                            <li><span style="color: #A63437;">red</span>: extant letter</li>
+                                            <li><span style="color: #BADA55;">green</span>: letter referenced by date in another letter</li>
+                                            <li>black: more than 3 letters</li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
