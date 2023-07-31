@@ -44,7 +44,7 @@
             <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.10/i18next.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/jquery-i18next@1.2.1/jquery-i18next.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@6.1.3/i18nextBrowserLanguageDetector.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@1.3.2/i18nextHttpBackend.min.js"></script>{% endif %}
+            <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@1.3.2/i18nextHttpBackend.min.js"></script>
         </head>
     </xsl:template>
 </xsl:stylesheet>
