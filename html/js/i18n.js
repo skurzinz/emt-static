@@ -19,6 +19,7 @@ $(function () {
     .init({
       debug: true,
       fallbackLng: 'en',
+      load: 'languageOnly',
       backend: {
         loadPath: 'locales/{{lng}}/translation.json',
       }
