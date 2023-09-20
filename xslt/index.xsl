@@ -39,7 +39,7 @@
                                                 <h1><xsl:value-of select="$project_short_title"/></h1>
                                                 <h2><xsl:value-of select="$project_title"/></h2>
                                                 <p>
-                                                    Lorem ipsum <strong><xsl:value-of select="$project_short_title"/></strong> dolor sit amet consectetur adipisicing elit. Deserunt esse eius deleniti molestiae quae ex cupiditate dolore aperiam, dolor exercitationem, corrupti vitae. Quod fugit architecto veritatis nihil magnam iste, accusantium enim. Ipsam error, deserunt, modi ex repellendus cum corporis voluptas porro totam voluptatibus dolore praesentium tempora, molestias magnam iste perferendis quis quisquam. Quae facilis quod earum harum placeat, repudiandae exercitationem sint optio laborum molestias quam! Laudantium saepe eos maxime aliquid quaerat amet vero? Similique, laboriosam.
+                                                    Zwischen 1677 und 1716 gingen eine Unzahl von Briefen hin und her zwischen Wien, Düsseldorf und Heidelberg: Kaiserin Eleonora Magdalena korrespondierte mit Vater bzw. Bruder, den Kurfürsten von der Pfalz. Erstmals wird hier die umfangreiche Korrespondenz im Volltext zugänglich gemacht.
                                                 </p>
                                                 <button class="btn btn-round">
                                                     <a href="toc.html">Read More</a>
